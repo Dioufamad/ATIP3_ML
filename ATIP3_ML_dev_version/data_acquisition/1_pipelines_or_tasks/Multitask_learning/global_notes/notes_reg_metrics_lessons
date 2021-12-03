@@ -1,0 +1,165 @@
+#>>>>>>>>> The metrics :
+soures :
+(1) https://towardsdatascience.com/what-are-the-best-metrics-to-evaluate-your-regression-model-418ca481755b
+(2) https://medium.com/usf-msds/choosing-the-right-metric-for-machine-learning-models-part-1-a99d7d7414e4
+
+>>R Square measures how much of variability in dependent variable can be explained by the model.
+It is square of Correlation Coefficient(R) and that is why it is called R Square
+Adjusted R Square is introduced because it will penalise additional independent variables added to the model and adjust the metric to prevent overfitting issue
+
+- R Squared & Adjusted R Squared are often used for explanatory purposes and explains how well your selected independent variable(s) explain the variability in your dependent variable(s)
+Adjusted R² also shows how well terms fit a curve or line but adjusts for the number of terms in a model.
+There are some problems with normal R² which are solved by Adjusted R². An adjusted R² will consider the marginal improvement added by an additional term in your model.
+So it will increase if you add the useful terms and it will decrease if you add less useful predictors. However, R² increases with increasing terms even though the model is not actually improving.
+When we are not adding any additional information, the Adjusted R2 goes down while the R2 keeps going up.
+
+- The numerator is MSE ( average of the squares of the residuals) and the denominator is the variance in Y values. Higher the MSE, smaller the R_squared and poorer is the model.
+ - source of metrics api : https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html
+- get value for R2 and Adjusted R2.
+- - build R2 square : https://stackoverflow.com/questions/49381661/how-do-i-calculate-the-adjusted-r-squared-score-using-scikit-learn/49381947
+
+>>>MSE and RMSE :
+While R Square is a relative measure of how well the model fits dependent variables, Mean Square Error is an absolute measure of the goodness for the fit.
+MSE is calculated by the sum of square of prediction error which is real output minus predicted output and then divide by the number of data points.
+Root Mean Square Error(RMSE) is the square root of MSE
+RMSE is also : the sample standard deviation of the differences between predicted values and observed values (called residuals)
+- source of the metric api : https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html
+-
+
+>>>>>>><Mean Absolute Error(MAE) :
+is similar to Mean Square Error(MSE). However, instead of the sum of square of error in MSE, MAE is taking the sum of absolute value of error.
+Compare to MSE or RMSE, MAE is a more direct representation of sum of error terms. MSE gives larger penalisation to big prediction error by square it while MAE treats all errors the same.
+- source of metric api : https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html
+
+
+>>>>>Overall Recommendation/Conclusion
+R Square/Adjusted R Square are better used to explain the model to other people because you can explain the number as a percentage of the output variability.
+MSE, RMSE or MAE are better to be used to compare performance between different regression models.
+Personally, I would prefer using RMSE and I think Kaggle also uses it to assess submission.
+However, even after being more complex and biased towards higher deviation,
+RMSE is still the default metric of many models because loss function defined in terms of RMSE is smoothly differentiable
+and makes it easier to perform mathematical operations.
+if you care only about prediction accuracy then RMSE is best. It is computationally simple, easily differentiable and present as default metric for most of the models.
+- Common Misconception:  seen on the web that the range of R² lies between 0 and 1 which is not actually true.
+The maximum value of R² is 1 but minimum can be negative infinity.
+Consider the case where model is predicting highly negative value for all the observations even though y_actual is positive.
+In this case, R² will be less than 0. This will be a highly unlikely scenario but the possibility still exists.
+
+- However, it makes total sense to use MSE if value is not too big and MAE if you do not want to penalize large prediction error.
+The MAE is a linear score which means that all the individual differences are weighted equally in the average.
+RMSE penalizes the higher difference more than MAE. The only case where it equals MAE is when all the differences are equal or zero.
+- One important distinction between MAE & RMSE that I forgot to mention earlier is that minimizing the squared error over a set of numbers results in finding its mean,
+and minimizing the absolute error results in finding its median. This is the reason why MAE is robust to outliers whereas RMSE is not.
+- Cases of RMSE being the same, similar to R². This is the case where Adjusted R² does a better job than RMSE whose scope is limited to comparing predicted values with actual values.
+Also, the absolute value of RMSE does not actually tell how bad a model is.
+It can only be used to compare across two models whereas Adjusted R² easily does that. For example, if a model has adjusted R² equal to 0.05 then it is definitely poor.
+
+Adjusted R square is the only metric here that considers overfitting problem.
+R Square has direct library in Python to calculate but I did not find a direct library to calculate Adjusted R square except using the statsmodel results.
+If you really want to calculate Adjusted R Square, you can use statsmodel or use its mathematic formula directly.
+
+
+#>>>> accuracy and precision in logistic regression models :
+source : https://www.youtube.com/watch?v=SJT4ZyLxIE0&list=PLMpDEwpxDXcYl4fBsFpom95SBaymcNGpm&index=2
+source of formulas images : https://www.kdnuggets.com/2020/04/performance-evaluation-metrics-classification.html#:~:text=The%20Confusion%20Matrix%20for%20a,Receiver%20Operating%20Characteristic%20(ROC)%20curve
+
+accuracy : when it predicts correctly, how much is that out of the total of the predictions ? (TP + TN)/total_predictions
+precision : when it predicts correclty the positive class, how much is that out of the total of the predictions ? TP/total_predictions
+
+recommendation : use the MCC and the balanced accuracy (see implementations on sklearn, use them for now but later on try to give to two options in my ATIP3_ML code for the unification of my codes)
+
+# >>>>>> the bias of each of the classic classif metrics :
+source : https://towardsdatascience.com/the-best-classification-metric-youve-never-heard-of-the-matthews-correlation-coefficient-3bf50a2f3e9a
+
+- some issues with the classic metrics: accuracy is sensitive to class imbalance; precision, recall, and F1-score are asymmetric
+precision is the proportion of true positives out of all detected positives, or simply TP/(TP+FP)
+The recall is the number of true positives that are correctly classified out of all that is truly positives (TP/(TP+FN))
+F1-score is the harmonic mean of the precision and recall
+- For binary classification, there is another (and arguably more elegant) solution: treat the true class and the predicted class as two (binary) variables,
+and compute their correlation coefficient (in a similar way to computing correlation coefficient between any two variables).
+The higher the correlation between true and predicted values, the better the prediction.
+This is the phi-coefficient (φ), rechristened Matthews Correlation Coefficient (MCC)
+
+# >>>> when to use f1_score instead of accuracy :
+source : https://medium.com/analytics-vidhya/accuracy-vs-f1-score-6258237beca2
+
+- Accuracy is used when the True Positives and True negatives are more important while F1-score is used when the False Negatives and False Positives are crucial
+- Accuracy can be used when the class distribution is similar while F1-score is a better metric when there are imbalanced classes as in the above case.
+- In most real-life classification problems, imbalanced class distribution exists and thus F1-score is a better metric to evaluate our model on.
+- issue of f1score : it doesn’t include TN (source : https://clevertap.com/blog/the-best-metric-to-measure-accuracy-of-classification-models/)
+- measures that summarize the precision (exactness) and recall (completeness) of a model and a description of the balance between the two in the F1 Score
+(source : https://machinelearningmastery.com/classification-accuracy-is-not-enough-more-performance-measures-you-can-use/)
+- Result : use the mcc to compare models performances and that even if it gives cases of not being defined
+#>>>>>> the proposition of using balanced accuracy :
+- it is still an accuracy score properly ie it will ignores some others parts of the confusion matrix even if it solves the issue of unbalanced datasets
+
+
+# >>>>>>>>>> weakness of AUC :
+source : https://www.researchgate.net/post/How_to_tell_if_an_F1-score_or_MCC_score_is_better_than_random_for_a_binary_classifier
+- If you want a more sophisticated measure, AUC is also a good candidate, as it involves all possible thresholds with their corresponding confusion matrices on the ROC-curve.
+- But pay attention, AUC has also a number of drawbacks, where the most important is that it is not bound to a fixed threshold
+
+# >>>> another top notch metric to use : Cohen kappa
+- source to where i have heard it first : https://www.researchgate.net/post/How_to_tell_if_an_F1-score_or_MCC_score_is_better_than_random_for_a_binary_classifier
+- source to what it is and how to call it on a true and pred situation : https://stackoverflow.com/questions/43676905/how-to-calculate-cohens-kappa-coefficient-that-measures-inter-rater-agreement
+- source to use its code in a gridsearchcv : https://datascience.stackexchange.com/questions/8064/how-to-use-cohens-kappa-as-the-evaluation-metric-in-gridsearchcv-in-scikit-lear
+-
+
+# #========================= Choice of metric for the selection of the best model in grid search cv model selection ==========================================================
+# - the MCC is perfect...almost : sometimes it gives off zero values that are not real perf values but
+"worst perf value affected because true perf is not known due to the fact that MCC is not defined, typically when its denominator is somehow null"
+ So the MCC will be our 2nd in command metric
+
+# for the 1st in command metric, we opt for a metric that contain the MCC, the cohen_kappa but also 2 others metrics that should be used if these two did not exist : the f&_score and the balanced accuracy:
+- why the cohen_kappa : he serves the same purpose as the MCC in order to equilibrate it and make a mean of the two
+- why others metrics : some value need to be pushed out when the MCC (and for the same reason the cohen_kappa) is zero due to being non defined.
+- what was the prinicipal criteria to choose the others metrics : being good when data is unbalanced, and be on the top when it comes to tell the performance ie (the f1score and the balanced accuracy)
+- why others metrics are two and not one : because to equilibrate the mean of MCC and cohen_kappa, we need at least 2 metrics to tell their truth and we average those truths
+-- NB1 : For the model selection, the direction of the metric (negative or positive) is not important but the "strength" ie how large it is, will determine the best model.
+The negative value of the correlations that MCC and cohen_kappa are, just means that we have to switch out the classes but the "strength of the prediction is still the same". So, a model with a negative metric
+can still be the best metric if its absolute value is the largest.
+So, the MCC and the cohen_kappa can be negative but we take the absolute value of each one to be able to ensure a value that goes in the same direction that the 2 others metrics and on the same scale of 0 to 1.
+That way, we ensure a model selection based on "how strong the model metrics are globally" and we do not inquiry about the sign of the metric if it can be negative.
+Now, when the model estimation with a test set comes, will be reported the model selection metric value but also different metrics individually in order to see the direction of the ones that can be negative
+(and eventually, the need to switch out classes)
+-- NB2 : mean of (|MCC|+|cohen_kappa|) + mean(f1score + bal.acc)) = (|MCC|+|cohen_kappa| + f1score + bal.acc) / 4 and it is what we use in our implementation of the grid_scorer
+# -- for a test
+actual = [+1, +1, +1, -1]
+prediction = [+1, -1, +1, +1]
+matthews_corrcoef(actual, prediction)
+# Out[11]: -0.3333333333333333
+cohen_kappa_score(actual, prediction)
+# Out[12]: -0.33333333333333326
+f1_score(actual, prediction, average='binary')
+# Out[13]: 0.6666666666666666
+balanced_accuracy_score(actual, prediction)
+# Out[14]: 0.3333333333333333
+###--- the invs now
+actual = [0, 0, 0, 1]
+prediction = [0, 1, 0, 0]
+matthews_corrcoef(actual, prediction)
+# Out[23]: -0.3333333333333333
+cohen_kappa_score(actual, prediction)
+# Out[24]: -0.33333333333333326
+f1_score(actual, prediction, average='binary')
+# Out[25]: 0.0
+balanced_accuracy_score(actual, prediction)
+# Out[26]: 0.3333333333333333
+
+
+# for the test values at the end of each seed, we output these :
+- the MM4
+- the MCC
+- the f1
+- the bal_acc
+hence we will need 4 stashes one by metric, 4 metrics to report (each one a median and a mean)
+####
+
+# sources to read my resultats metric against metric at the end :
+- the MM4 is the top one
+- the MCC is the one to check but if it shows a lot of zero, you gotta run!
+- now for comparison with others publications, we have the f1score and the bal.acc. read below...
+- a source on MCC vs f1score : https://ichi.pro/fr/coefficient-de-correlation-de-matthews-quand-l-utiliser-et-quand-l-eviter-53924330618750
+- a source on f1score vs bal.acc : https://stats.stackexchange.com/questions/49579/balanced-accuracy-vs-f-1-score
+
+

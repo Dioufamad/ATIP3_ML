@@ -1,0 +1,37 @@
+Bonjour,
+
+Ces repertoires contiennent les listes des gènes de ménages produits.
+
+Les gènes de ménages (HKG - House Keeping Genes) ont été sélectionnés comme suit : 
+
+"""
+Dans notre galerie, nous avons pour chaque cohorte des probes commes variables.
+Une probe est sélectionnée comme gène de ménage si et seulement si elle valide ces deux règles suivantes : 
+- Règle 1 : pour un échantillon, la valeur d'expression de la probe doit être supérieure à l'expression médiane de toutes les probes pour cet échantillon, et ceci doit être vérifié chez tous les échantillons
+- Règle 2 : Le coefficient de variance CV (écart-type/moyenne) de la probe, à travers tous les échantillons, doit être inférieur à 0,35
+"""
+
+Explications : 
+La Règle 1 une vérifie que l'expression de la probe sélectionée est grande. 
+La Règle 2 s'assure de la faible variation de l'expression de la probe sélectionnée (plus CV est petit, moins la probe a de la variance). Les meilleures probes comme gènes de ménage seront ont le plus petit CV. Les probes aux Gene Symbol inconnues ont été suprimés des classements.
+
+Source de ces règles : She, X., Rohl, C. A., Castle, J. C., Kulkarni, A. V., Johnson, J. M., & Chen, R. (2009). Definition, conservation and epigenetics of housekeeping and tissue-enriched genes. BMC Genomics, 10, 269. https://doi.org/10.1186/1471-2164-10-269
+
+Effectifs des probes de ménages sélectionnés ayant un Gene Symbol connu : 
+- cohorte Remagus02 : 10822
+- cohorte Remagus04 : 5402
+- cohorte MDAnderson : 3134
+- communs aux trois cohortes : 2626
+
+Description des résultats : 
+Il y'a 4 repertoires : 
+- 1 repertoire pour chaque cohorte X contenant : 
+	+ un fichier "X_HKGsCVnoDupRanked_report.csv" : liste de TOUS les gènes de ménages sélectionnés, par ordre croissant du CV
+	+ un fichier "X_HKGsAlphabetOrder_report.csv" : liste de TOUS les gènes de ménages sélectionnés, par ordre aphabétique pour une plus facile examination
+	+ un fichier "X_Top20HKGsCVnoDupRanked_report" : liste des 20 MEILLEURS gènes de ménages parmi ceux sélectionnés, par ordre croissant du CV
+	+ un fichier "X_Top20HKGsAlphabetOrder.csv" : liste des 20 MEILLEURS gènes de ménages parmi ceux sélectionnés, par ordre aphabétique pour une plus facile examination
+- 1 repertoire "Common_HKGs" contenant : 
+	+ un fichier "HKGs_common_to_cohorts_report.csv" : liste de tous les gènes commun aux trois cohortes, par ordre croissant du CV chez la cohorte Remagus02
+	+ un fichier "HKGs_common_to_cohortsInAlphabetOrder_report.csv" : liste de tous les gènes commun aux trois cohortes, par ordre aphabétique pour une plus facile examination
+
+Fin du fichier.

@@ -1,0 +1,24 @@
+>>>>>>>>>>>>>>>>>geo_datasets_importer : for the datasets from GEO imported using the GSE
+- demo1_GEO_datasets.R :
+the base model of the script used to extract GSE datasets from GEO and analyse until found statistics
+- GEO_dataset_w_best_probesets_only_maker.R :
+extract a GSE dataset, keep only the best probe for a gene and produce the dataset
+- GEO_datasets_only_atip3_probes_rows.R :
+(to continue) a trial to get the GSE dataset woth only the MTUS1 probes
+- GEO_datasets_R02_R04_MDA.R :
+extract a GSE dataset, keep only the best probe for a gene and produce the dataset
+make the histogram for the sample 1, sample 2, and sample 3
+get the statistics of the columns
+-
+input :
+output :
+>>>>>>>>>>>>>>>>homemade_R02_R04_MDA_formatter : for the 3 cohorts used initially but from data given locally
+- R02_formater_4_ATIP3_ML.py :
+use the clinical info file (as left file), the gene expression table (as the right file), and join them
+change the columns name if necessary
+make the values as log2 if wanted
+- R02xR04xMDA_annot_formater.py :
+using the base file with annotations, make a simpler 2 cols file for each dataset : a col of probe and a col of the full report on the GS, GBAN and probe name
+-
+input :
+output :

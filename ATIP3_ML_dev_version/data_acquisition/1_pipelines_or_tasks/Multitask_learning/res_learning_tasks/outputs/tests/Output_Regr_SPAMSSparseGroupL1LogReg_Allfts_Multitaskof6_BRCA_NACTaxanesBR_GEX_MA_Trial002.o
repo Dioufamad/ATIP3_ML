@@ -1,0 +1,48 @@
+This is the log file following the course of the analysis:
+- Started working with seed 0
+- Finished working with seed 0
+- Started working with seed 1
+- Finished working with seed 1
+ >>>> Summary of model selection analysis : 
+- These choices have been made and influence the run : 
++ Dataset analysed is known as :  JoinNewDesign2CommonFtsof6
++ Number of random states explored and averaged :  2
++ Formatting of response values :  resp_val_type_as_float
++ Adding an intercept :  yes
++ Scorer used in the best model selection (gridsearchcv) :  f1
++ List of metrics computed for best models :  ['MM4', 'MCC', 'CK', 'F1', 'BalAcc', 'Acc', 'Prec', 'Rec', 'AUC'] and ROC curves.
+- The run is described by the following : 
++ Illness studied : BRCA
++ Drug studied : NACTaxanesBR
++ Profile of data used : GEX_MA
++ Type of Supervised Learning task used : Regr
++ Scheme/Alg used : SPAMSSparseGroupL1LogReg
++ Estimator used : SPAMSCustomEstimator0
++ The type of model produced : Allfts_Multitaskof6
++ trial :  Trial002
+ >>>> Checking for integrity of the results collected...
++ All results are accounted for!
+ >>>> Report, for each seed, the results (best value for HPs explored, validation score, test score) for the best model found : 
++ Seed 0 best model had : best params as {'lambda1': 0.0001} , validation score of 0.5706763119921014 and test score as {'MM4': 0.36011050242135656, 'MCC': 0.2253744679276044, 'CK': 0.09667673716012082, 'F1': 0.5517241379310345, 'BalAcc': 0.5666666666666667, 'Acc': 0.43478260869565216, 'Prec': 0.38095238095238093, 'Rec': 1.0, 'AUC': 0.6416666666666666}.
++ Seed 1 best model had : best params as {'lambda1': 0.0001} , validation score of 0.5582981366459627 and test score as {'MM4': 0.4321145873837569, 'MCC': 0.2846520432287211, 'CK': 0.22297297297297303, 'F1': 0.5833333333333334, 'BalAcc': 0.6375, 'Acc': 0.5652173913043478, 'Prec': 0.4375, 'Rec': 0.875, 'AUC': 0.6666666666666667}.
+ >>>> Report, the averages across the seeds, for the results (test score, best value for HPs explored) for the best model  : 
++ The average test score, across the seeds : Mean {'MM4': 0.39611254490255676, 'MCC': 0.2550132555781628, 'CK': 0.15982485506654692, 'F1': 0.5675287356321839, 'BalAcc': 0.6020833333333333, 'Acc': 0.5, 'Prec': 0.40922619047619047, 'Rec': 0.9375, 'AUC': 0.6541666666666667}
++ The average test score, across the seeds : Median {'MM4': 0.39611254490255676, 'MCC': 0.2550132555781628, 'CK': 0.15982485506654692, 'F1': 0.5675287356321839, 'BalAcc': 0.6020833333333333, 'Acc': 0.5, 'Prec': 0.40922619047619047, 'Rec': 0.9375, 'AUC': 0.6541666666666667} 
++ The average test score, across the seeds : Std {'MM4': 0.036002042481200175, 'MCC': 0.029638787650558357, 'CK': 0.0631481179064261, 'F1': 0.015804597701149448, 'BalAcc': 0.03541666666666665, 'Acc': 0.06521739130434781, 'Prec': 0.028273809523809534, 'Rec': 0.0625, 'AUC': 0.012500000000000067} 
++ The average best value for the HPs explored, across the seeds : Mean {'lambda1': 0.0001} 
++ The average best value for the HPs explored, across the seeds : Median {'lambda1': 0.0001} 
++ The average best value for the HPs explored, across the seeds : Std {'lambda1': 0.0} 
+ >>>> Report, for each seed, the counts of the coefs, for each best model : 
++ Seed 0 : Total features (fts) is 72205 , number NON null coefs fts is 6535 (ie 9.050619763174296 % of total ) , number null coefs fts is 65670 (ie 90.9493802368257 % of total ) 
++ Seed 1 : Total features (fts) is 72205 , number NON null coefs fts is 6631 (ie 9.18357454469912 % of total ) , number null coefs fts is 65574 (ie 90.81642545530087 % of total ) 
+ >>>> Report, across the seeds, the averages and the consensus of the regression coefs : 
++ The averages of the counts of the coefs (Mean values part) : number NON null coefs fts is 6583.0 (ie 9.117097153936708 % of total ) , number null coefs fts is 65622.0 (ie 90.88290284606329 % of total ) 
++ The averages of the counts of the coefs (Median values part) : number NON null coefs fts is 6583.0 (ie 9.117097153936708 % of total ) , number null coefs fts is 65622.0 (ie 90.88290284606329 % of total ) 
++ The averages of the counts of the coefs (Std values part) : number NON null coefs fts is 48.0 (ie 0.06647739076241166 % of total ) , number null coefs fts is 48.0 (ie 0.06647739076241521 % of total ) 
++ The consensus on the counts of the coefs : Total features (fts) is 72205 , number NON null coefs fts is 8935 (ie 12.374489301294926 % of total ) , number null coefs fts is 63270 (ie 87.62551069870509 % of total ) 
+ >>>> Savings the tables containing views of the regression coefs
++ A table with the only NON null coefs sorted in descending order is saved in this path : 
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/Output_Regr_SPAMSSparseGroupL1LogReg_Allfts_Multitaskof6_BRCA_NACTaxanesBR_GEX_MA_Trial002_NonNullCoefs.csv
++ A table with the raw coefs, sorted in the features order is saved in this path : 
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/Output_Regr_SPAMSSparseGroupL1LogReg_Allfts_Multitaskof6_BRCA_NACTaxanesBR_GEX_MA_Trial002_RawListOfCoefs.csv
+[92m >>>> Analysis done. Time taken is :  0:05:38.597385 [0m

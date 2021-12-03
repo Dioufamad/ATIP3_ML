@@ -1,0 +1,71 @@
+# this is a list of each HP for SPAMS's fistaFlat and the preferred values for our ATIP3 tasks : 
+
+#  2 parts : part 1 is for the HPs that have to stay as default, &, part 2 is for the HP that changes following the task to launch
+
+# each line has the hp writing with the value entered , and comments on the HP can follow
+
+# Usage: spams.fistaFlat(Y,X,W0,return_optim_info = False,numThreads =-1,max_it =1000,L0=1.0,
+#                 fixed_step=False,gamma=1.5,lambda1=1.0,delta=1.0,lambda2=0.,lambda3=0.,
+#                 a=1.0,b=0.,c=1.0,tol=0.000001,it0=100,max_iter_backtracking=1000,
+#                 compute_gram=False,lin_admm=False,admm=False,intercept=False,
+#                 resetflow=False,regul="",loss="",verbose=False,pos=False,clever=False,
+#                 log=False,ista=False,subgrad=False,logName="",is_inner_weights=False,
+#                 inner_weights=None,size_group=1,groups = None,sqrt_step=True,
+#                 transpose=False,linesearch_mode=0)
+
+
+# >>>>>>>>>>>>>>>> PART I : HPs LEFT AS DEFAULT
+Y, # given
+X, # given
+W0, # given
+return_optim_info = False,
+numThreads =-1,
+max_it =1000,
+L0=1.0, 
+fixed_step=False,
+gamma=1.5,
+lambda1=1.0,
+delta=1.0,
+lambda2=0.,
+lambda3=0.,
+a=1.0,
+b=0.,
+c=1.0,
+tol=0.000001,
+it0=100,
+max_iter_backtracking=1000,
+compute_gram=False,
+lin_admm=False,
+admm=False,
+intercept=False,
+resetflow=False,
+
+
+verbose=False,
+pos=False,
+clever=False,
+log=False,ista=False,
+subgrad=False,
+logName="",
+is_inner_weights=False,
+inner_weights=None,
+size_group=1,
+groups = None,
+sqrt_step=True,
+transpose=False,
+linesearch_mode=0
+
+
+# >>>>>>>>>>>>>>>> PART II : HPs TO CHANGE FOLLOWING ANALYSIS
+loss="", : (1) try loss='square' for all regul tasks
+			(2) try loss='logistic' for all regul tasks but by using a modified col y with only -1 and +1
+
+regul="", 
+Valid values for the regularization parameter (regul) are:
+#       "l0", "l1", "l2", "linf", "l2-not-squared", "elastic-net", "fused-lasso",
+#       "group-lasso-l2", "group-lasso-linf", "sparse-group-lasso-l2",
+#       "sparse-group-lasso-linf", "l1l2", "l1linf", "l1l2+l1", "l1linf+l1",
+#       "tree-l0", "tree-l2", "tree-linf", "graph", "graph-ridge", "graph-l2",
+#       "multi-task-tree", "multi-task-graph", "l1linf-row-column", "trace-norm",
+#       "trace-norm-vec", "rank", "rank-vec", "none"
+

@@ -1,0 +1,9 @@
+,FS_Remagus04,FS_MDAnderson_part1of2_310,FS_MT_6_dts,FS_BMS_Horak_2013,FS_Osaka_Miyake_2012,FS_Remagus02,FS_Fudan_MAQC2BR
+high strigency (grp1),103,5,14,103,18,5916,30
+added by lenient stringency (grp2),4875,38,267,4875,86,6355,355
+lenient stringency (grp3=grp1+grp2),4978,43,281,4978,104,12271,385
+Smax,2461,6,24,2461,80,8268,124
+Between SstrongV1 et Smax,58,5,19,58,3,60,25
+Between SweakV1 et SstrongV1,382,12,102,382,9,944,98
+Between SstrongV2 et Smax,138,9,60,138,9,178,57
+Between SweakV2 et SstrongV2,2246,27,191,2246,15,3254,192

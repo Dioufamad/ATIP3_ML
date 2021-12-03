@@ -1,0 +1,15 @@
+- HKGs_common_search.py :
+take 3 lists of sorted best HGs (one for each cohorts) and gives the list of commons HKGs
+- HKGs_common_search_for_Aexp_comp.py :
+take 3 lists of sorted best HGs (one for each cohorts) and gives the list of commons HKGs
+this is the version where probes with numbers that are removed do not have a report on them
+(unify with HKGs_common_search.py)
+- HKGs_common_search_on_GEO_datasets1.py :
+take 3 lists of sorted best HGs (one for each cohorts) and gives the list of commons HKGs
+this is the version where you can sort the full table on the order of HKGs of a cohort (on the side you have a version with alphbetical order and overall rank)
+- HKGs_search.py :
+for a cohort given locally, create the list of HKGs (alphabetical and sorted on CV versions)
+- HKGs_search_on_GEO_datasets1.py :
+for a GSE dataset, create the list of HKGs (alphabetical, sorted on CV, the top20ofCV, the top20Alphabetical versions)
+- HKPs_1.R :
+(not useful finally) a trial of coding the HKG search in R

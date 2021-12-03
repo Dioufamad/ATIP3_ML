@@ -1,0 +1,60 @@
+
+
+
+J'ai ajouté cette colonne de rangs d'entiers pour résoudre le problème suivant : normalement, nous n'avons pas besoin des rangs utilisant des entiers car nous avons déjà les rangs normalisés (valeurs entre 0 et 1) qui montrent de la plus petite à la plus grande respectivement la différence de position du le gène le plus important au le gène le moins important, et cela de manière spécifique à la "taille et réalité de la sélection où le gène a été vu"; cependant, ils ne sont juste pas faciles à lire et vu que  (ie un gsi un gène était En prenant le cas de 
+
+
+#====================================================================================
+
+Hello Chloé,
+
+Merci pour tes différents points.
+
+- Remarque 1 : 
+A chaque répétition, Le multi-tâche me sort un modèle contenant 36353 gènes dont j'ai pour chacun une valeur de coefficient. Ces 36353 sont les 3 "copies" de chacun des 12151 gènes venant d'une cohorte. En pièce-jointe, le fichier des coefs obtenus sur les 10 répétitions pour que tu vois bien comment cela ressort. 
+
+A partir de là, j'avais 2 options : 
+
+(a) attribuer les rangs 1-12151 à chaque lot de 12151 gènes venant d'une cohorte (les 12151 venant de R04 sont rankés ensemble, de même pour les 12151 de MDA, et de même pour les 12151 de BMS). Cela est faisable et rend bien compte du rend de chaque gène, quel que soit le nombre de cohortes impliquées dans le multi-tâche. Cependant, un problème algorithmique que j'ai à faire cela est : les coefs que je vais analyser que ces ranking 1-12151 ne sont pas les coefs dans un modèle de 12151 features mais ceux dans un modèle de 36353 features.  
+
+
+(b) attribuer les rangs 1-36353 à l'ensemble des 36353 gènes du modèle.
+J'ai opté pour ceci car mes premières observations sur mes tableaux sortis montraient, comme entre les 3 sélections single-task, de grands écarts de rang entre les 3 "copies" d'un gène utilisées dans le multi-tâche. Et cette manière (b) rendait mieux compte de cela. 
+Un exemple pour expliquer un peu plus : 
+pour un gène, sa copie venant de R04 pouvait être classée à 300, sa copie venant de MDA à 10 000 et sa copie de BMS à 31 000. Or, comme un seul modèle de 36353 est sorti, mon attente était que : (1) un gène, dont l'importance dans la prédiction reste à peu près la même sur les 3 cohortes, aurait les rangs de ses 3 "copies" comme assez proches car 3 coefficients assez proches; (2) un gène important dans toutes les 3 cohortes aurait 3 rangs très haut placés. Cependant, j'ai l'impression que dans la sélection du multi-tâche, un gène, même s'il est important dans la prédiction, va avoir ses copies sélectionnées par "vagues" (une copie est sélectionnée avant le rang 12000, une autre entre 12000 et 24000, enfin la dernière entre 24000 et 32000). J'ai pensé à garder car le multi-tâche serait peut-être entrain de faire ainsi une sélection en gérant les features de corrélation proches en preant un des features assez tôt et les autres, s'ils sonts nécessaire seulement, plus tard.
+
+Au final, vu que je faisais un tableau visant à voir les gènes assez haut placés à peu près dans toutes les sélections, j'ai gardé pour le multi-tâche un ranking sur 36353 gènes (la manière b ci-dessus) pour montrer aussi ce problème que j'avais avec une "copie" du gène rankée dans une plage très différente de ses deux autres copies...
+
+- Remarque 2 : 
+Initialement, j'utilisais des rangs normalisés et je ne rankais que les gènes sélectionnés. Puis, en discutant avec Sylvie, elle a proposé que ce serait d'avoir des rangs unitaires (ie 1 à 12151) pour montrer dans la tableau l'impression "où est placé mon gène finalement dans le lot initial de mes 12151 gènes". Ceci était une très bonne idée surtout que les 3 cohortes ont toutes 12151 gènes donc pas la peine de normaliser. Cependant, en faisant cela j'avais 2 petits soucis : 
+(s1) à un moment, j'ai proposé à Sylvie, l'idée de placer sur un même rang les gènes qui avait un même coefficient (les mettre ex-aequo), vu qu'algorithmiquement parlant, les gènes non sélectionnés sont mis à zéro et donc dans le même sac d'où ils ne devraient pas avoir un rang différent entre eux. Toutefois, j'ai senti qu'elle n'était pas très partante pour cette idée de mettre les gènes non sélectionnés à un même rang alors j'ai d'abord sorti ce tableau qui donnait un rang à tout le monde histoire de voir et ensuite, si vraiment le fait d'inclure cette idée "des ex-aequo" était bonne, je peux rectifier cela.
+(s2) il est un peu étrange pour moi de ranker sur 12151 et pas juste sur les gènes sélectionnés (ex : la FS de MDA n'aurait dû avoir que 260 rangs et pas 12151). Et si, je devais ranker sur les gènes sélectionnés seulement, je dois utiliser des rangs normalisés (car la sélection de MDA fait 260 et pas 12151 comme chez RO4 et BMS, ou encore pour aider dans les discrepancies de rangs sur les copies du multi-tâche comme noté sur la remaque 1)  Mais encore une fois, dans l'esprit de rapporter l'idée "où est placé mon gène finalement dans le lot initial de mes 12151 gènes", j'ai fait ainsi pour bien faire ressortir la vision de Sylvie.
+
+Voilà ce que je proposais initialement comme tableau : 
+- ranker juste les gènes sélectionnés (260 rangs chez MDA, 12151 rangs RO4 et BMS)
+- normaliser ces rangs entre 0 et 1 ( c'est des valeurs bizarres et non lisibles facilment à l'oeil comme rangs mais qui montrent bien du plus petit au plus grand, quelle que soit la taille de la sélection, où se positionne mon gène) 
+- ordonner le tableau suivant ces rangs allant de 0 à 1
+- ajouter au tableau ordonné une colonne "Rang_final_de_cette_liste" qui contient des valeurs 1 à nombre_lignes_du_tableau pour facilement lire au final l'ordre des gènes. On sait que nous sommes partis de 12151 gènes alors cette dernière colonne "Rang_final_de_cette_liste" donne directement l'ordre des gènes "survivants" à notre processus de filtrage et/ou classement.
+
+Chloé, dis moi si c'est une bonne idée de faire ainsi et je renvoie ce tableau.
+
+- Matrices de corrélation : 
+ok pour les matrices.
+Réponse : J'ai bien fait un lasso simple et pas un elastic-net. J'ai également bien vérifié dans le multi-tâche que c'est bien un lasso que je lance et pas un élastic-net (tout ce qui y concerne l2 est à zero et le modèle me sort bien les 3 copies d'un gène si ce gène est sélectionné...).
+
+Q1 : Pour chaque cohorte, je pense faire la matrice de corrélation des expressions des gènes sur les valeurs d'expression "standardisées" (ie obtenues après un fit+transform) puisque c'est ce que nos algos utilisent. 
+Est-ce bien cela ou je dois revenir aux valeurs d'expression "brutes" ?
+
+Q2 : Juste pour ma compréhension...Si l'on se rend compte que des gènes sont mis à l'écart par les algos, juste car ils ont des valeurs d'expression fortement corrélées à celles d'un gène déjà sélectionné, quelle 'politique' devrions nous envisager avec nos algos parmi ces deux suivantes :
+(p1) laisser nos algos ne nous sélectionner qu'un des gènes aux valeurs corrélées en nous disant que cela va avec notre vision d'avoir le moins de gènes gènes à suggérer dans nos résultats pour des tests en paillasse
+(p2) obliger nos algos à sortir tous les gènes importants, même s'ils sont corrélés entre eux, car sinon on perd des acteurs dans le phénomène biologique
+
+
+
+
+
+
+
+
+Merci.
+Amad.

@@ -1,0 +1,30 @@
+,,,,,,,
+Cohort,HKG used,quality of the HKG,Count predicted ATIP3 low samples / Total ,,"Using Median / 2, Count ATIP3 low samples same as in Sylvie’s work","Using Median / 3, Count ATIP3 low samples same as in Sylvie’s work",Min. ATIP3 values
+R02,UBC,1st of the common HKGs,0 / 226,,0.337,0.225,0.674
+,RPL39,1st of the cohort,0 / 226,,0.321,0.214,0.674
+,RPL37A,2nd of the cohort,0 / 226,,0.317,0.211,0.674
+,RPS27,3rd of the cohort,0 / 226,,0.315,0.21,0.674
+R04,UBC,1st of the common HKGs,0 / 142,,0.318,0.212,0.636
+,RPL39,1st of the cohort,0 / 142,,0.303,0.202,0.636
+,RPL37A,2nd of the cohort,0 / 142,,0.301,0.2,0.636
+,RPL41,3rd of the cohort,0 / 142,,0.296,0.197,0.636
+MDA,UBC,1st of the common HKGs,0 / 508,,0.308,0.205,0.616
+,TUBA1B,1st of the cohort,,,0.326,0.218,0.616
+,ZNF207,2nd of the cohort,,,0.425,0.284,0.616
+,RSRC2,4th of the cohort,,,0.447,0.298,0.616
+,,,,,,,
+,,,,,,,
+,,,,,,,
+Cohort,HKG used,quality of the HKG,"Using Median / 2, Count predicted ATIP3  low samples / Total","Using Median / 3, Count predicted ATIP3  low samples / Total","Using Median / 2, Count ATIP3 low samples that are same in Sylvie’s work / Total  ATIP3 low samples in Sylvie’s work","Using Median / 3, Count ATIP3 low samples that are same in Sylvie’s work / Total  ATIP3 low samples in Sylvie’s work",
+R02,UBC,1st of the common HKGs,2 / 226,0 / 226,0,0,
+,RPL39,1st of the cohort,3 / 226,0 / 226,0,0,
+,RPL37A,2nd of the cohort,3 / 226,0 / 226,0,0,
+,RPS27,3rd of the cohort,3 / 226,0 / 226,0,0,
+R04,UBC,1st of the common HKGs,1 / 142,0 / 142,NA,NA,
+,RPL39,1st of the cohort,1 / 142,0 / 142,,,
+,RPL37A,2nd of the cohort,1 / 142,0 / 142,,,
+,RPL41,3rd of the cohort,1 / 142,0 / 142,,,
+MDA,UBC,1st of the common HKGs,0 / 508,0 / 508,0,0,
+,TUBA1B,1st of the cohort,0 / 508,0 / 508,0,0,
+,ZNF207,2nd of the cohort,0 / 508,0 / 508,0,0,
+,RSRC2,4th of the cohort,0 / 508,0 / 508,0,0,

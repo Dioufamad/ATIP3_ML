@@ -1,0 +1,10 @@
+sources :
+(1) https://www.researchgate.net/post/Which_regression_is_appropriate_when_the_dependent_variable_is_nominal_and_independent_variable_is_measurable
+
+>>>>>>>
+Dependent variable has only two ordinal outcomes: success or failure –a political candidate may want to know the behaviour of voters, i.e., characteristics of them who may vote for him/her or not. Each voter’s age, profession, etc. have influence on his/her choice to vote for the candidate or not – Binary logistic regression
+Dependent variable may have more than two ordianl outcomes: after the high school, student’s selection to “go to university”, “go to vocational training”, “do a job”, or “other” – Multinary logistic regression
+Dependent variable is a count: couple’s characteristics affecting their family size. Number of children (0, 1, 2, 3, …): it may have some dependence on their income, ages, etc. – Poisson regression
+Dependent variable is period until a particular event happens: time until an employed person finds employment – Cox regression
+
+=> we have the pCR response as having 2 levels so we will use binary logistic regression

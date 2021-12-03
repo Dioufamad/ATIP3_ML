@@ -1,0 +1,44 @@
+This is the log file following the course of the analysis:
+- Started working with seed 0
+- Finished working with seed 0
+ >>>> Summary of model selection analysis : 
+- These choices have been made and influence the run : 
++ Dataset analysed is known as :  JoinNewDesign2CommonFtsof3oftop4FSsL1
++ Number of random states explored and averaged :  1
++ Formatting of response values :  resp_val_type_as_float
++ Adding an intercept :  yes
++ Scorer used in the best model selection (gridsearchcv) :  f1
++ List of metrics computed for best models :  ['MM4', 'MCC', 'CK', 'F1', 'BalAcc', 'Acc', 'Prec', 'Rec', 'AUC'] and ROC curves.
+- The run is described by the following : 
++ Illness studied : BRCA
++ Drug studied : NACTaxanesBR
++ Profile of data used : GEX_MA
++ Type of Supervised Learning task used : Regr
++ Scheme/Alg used : SPAMSSparseGroupL1L2LogReg
++ Estimator used : SPAMSCustomEstimator0
++ The type of model produced : CommonFtsMT3ofTop4FSsL1
++ trial :  Trial1MT3ofTop4FSsL1
+ >>>> Checking for integrity of the results collected...
++ All results are accounted for!
+ >>>> Report, for each seed, the results (best value for HPs explored, validation score, test score) for the best model found : 
++ Seed 0 best model had : best params as {'lambda1': 0.00032550885998350565} , validation score of 0.6021445221445222 and test score as {'MM4': 0.4236186298158978, 'MCC': 0.31622776601683794, 'CK': 0.18181818181818188, 'F1': 0.5714285714285715, 'BalAcc': 0.625, 'Acc': 0.5, 'Prec': 0.4, 'Rec': 1.0, 'AUC': 0.84375}.
+ >>>> Report, the averages across the seeds, for the results (test score, best value for HPs explored) for the best model  : 
++ The average test score, across the seeds : Mean {'MM4': 0.4236186298158978, 'MCC': 0.31622776601683794, 'CK': 0.18181818181818188, 'F1': 0.5714285714285715, 'BalAcc': 0.625, 'Acc': 0.5, 'Prec': 0.4, 'Rec': 1.0, 'AUC': 0.84375}
++ The average test score, across the seeds : Median {'MM4': 0.4236186298158978, 'MCC': 0.31622776601683794, 'CK': 0.18181818181818188, 'F1': 0.5714285714285715, 'BalAcc': 0.625, 'Acc': 0.5, 'Prec': 0.4, 'Rec': 1.0, 'AUC': 0.84375} 
++ The average test score, across the seeds : Std {'MM4': 0.0, 'MCC': 0.0, 'CK': 0.0, 'F1': 0.0, 'BalAcc': 0.0, 'Acc': 0.0, 'Prec': 0.0, 'Rec': 0.0, 'AUC': 0.0} 
++ The average best value for the HPs explored, across the seeds : Mean {'lambda1': 0.00032550885998350565} 
++ The average best value for the HPs explored, across the seeds : Median {'lambda1': 0.00032550885998350565} 
++ The average best value for the HPs explored, across the seeds : Std {'lambda1': 0.0} 
+ >>>> Report, for each seed, the counts of the coefs, for each best model : 
++ Seed 0 : Total features (fts) is 36454 , number NON null coefs fts is 1258 (ie 3.450924452734953 % of total ) , number null coefs fts is 35196 (ie 96.54907554726505 % of total ) 
+ >>>> Report, across the seeds, the averages and the consensus of the regression coefs : 
++ The averages of the counts of the coefs (Mean values part) : number NON null coefs fts is 1258.0 (ie 3.450924452734953 % of total ) , number null coefs fts is 35196.0 (ie 96.54907554726505 % of total ) 
++ The averages of the counts of the coefs (Median values part) : number NON null coefs fts is 1258.0 (ie 3.450924452734953 % of total ) , number null coefs fts is 35196.0 (ie 96.54907554726505 % of total ) 
++ The averages of the counts of the coefs (Std values part) : number NON null coefs fts is 0.0 (ie 0.0 % of total ) , number null coefs fts is 0.0 (ie 0.0 % of total ) 
++ The consensus on the counts of the coefs : Total features (fts) is 36454 , number NON null coefs fts is 1258 (ie 3.450924452734953 % of total ) , number null coefs fts is 35196 (ie 96.54907554726505 % of total ) 
+ >>>> Savings the tables containing views of the regression coefs
++ A table with the only NON null coefs sorted in descending order is saved in this path : 
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/running/Output_Regr_SPAMSSparseGroupL1L2LogReg_CommonFtsMT3ofTop4FSsL1_BRCA_NACTaxanesBR_GEX_MA_Trial1MT3ofTop4FSsL1_NonNullCoefs.csv
++ A table with the raw coefs, sorted in the features order is saved in this path : 
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/running/Output_Regr_SPAMSSparseGroupL1L2LogReg_CommonFtsMT3ofTop4FSsL1_BRCA_NACTaxanesBR_GEX_MA_Trial1MT3ofTop4FSsL1_RawListOfCoefs.csv
+[92m >>>> Analysis done. Time taken is :  0:18:11.660854 [0m

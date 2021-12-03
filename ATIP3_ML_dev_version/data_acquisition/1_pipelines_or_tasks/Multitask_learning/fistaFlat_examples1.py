@@ -1,0 +1,168 @@
+# a script with examples of the use of the fistaFlat() line
+# source : https://programtalk.com/python-examples/spams.fistaFlat/
+
+# Example 1
+# Project: pylearn-parsimony
+# Source File: test_group_lasso.py
+
+def test_nonoverlapping_nonsmooth(self):
+    # Spams: http://spams-devel.gforge.inria.fr/doc-python/doc_spams.pdf
+
+    import numpy as np
+    from parsimony.functions import CombinedFunction
+    import parsimony.algorithms.proximal as proximal
+    import parsimony.functions as functions
+    import parsimony.functions.nesterov.gl as gl
+    import parsimony.datasets.simulate.l1_l2_gl as l1_l2_gl
+    import parsimony.utils.start_vectors as start_vectors
+
+    np.random.seed(42)
+
+    # Note that p must be even!
+    n, p = 25, 20
+    groups = [list(range(0, int(p / 2))), list(range(int(p / 2), p))]
+    #        weights = [1.5, 0.5]
+
+    A = gl.linear_operator_from_groups(p, groups=groups)  # , weights=weights)
+
+    l = 0.0
+    k = 0.0
+    g = 1.0
+
+    start_vector = start_vectors.RandomStartVector(normalise=True)
+    beta = start_vector.get_vector(p)
+
+    alpha = 1.0
+    Sigma = alpha * np.eye(p, p) + (1.0 - alpha) * np.random.randn(p, p)
+    mean = np.zeros(p)
+    M = np.random.multivariate_normal(mean, Sigma, n)
+    e = np.random.randn(n, 1)
+
+    snr = 100.0
+
+    X, y, beta_star = l1_l2_gl.load(l, k, g, beta, M, e, A, snr=snr)
+
+    eps = 1e-8
+    max_iter = 8500
+
+    beta_start = start_vector.get_vector(p)
+
+    mus = [5e-2, 5e-4, 5e-6, 5e-8]
+    fista = proximal.FISTA(eps=eps, max_iter=max_iter / len(mus))
+
+    beta_parsimony = beta_start
+    for mu in mus:
+        #            function = functions.LinearRegressionL1L2GL(X, y, l, k, g,
+        #                                                        A=A, mu=mu,
+        #                                                        penalty_start=0)
+
+        function = CombinedFunction()
+        function.add_function(functions.losses.LinearRegression(X, y, mean=False))
+        function.add_penalty(gl.GroupLassoOverlap(l=g, A=A, mu=mu, penalty_start=0))
+
+        beta_parsimony = fista.run(function, beta_parsimony)
+
+    try:
+        import spams
+
+        params = {"loss": "square", "regul": "group-lasso-l2", "groups": np.array([1] * (int(p / 2)) + [2] * (int(p / 2)), dtype=np.int32), "lambda1": g, "max_it": max_iter, "tol": eps, "ista": False, "numThreads": -1, }
+        beta_spams, optim_info = spams.fistaFlat(Y=np.asfortranarray(y), X=np.asfortranarray(X), W0=np.asfortranarray(beta_start), return_optim_info=True, **params)
+
+    except ImportError:
+        beta_spams = np.asarray([[14.01111427], [35.56508563], [27.38245962], [22.39716553], [5.835744940], [5.841502910], [2.172209350], [32.40227785], [22.48364756], [26.48822401], [0.770391500], [36.28288883], [31.14118214], [7.938279340], [6.800713150], [6.862914540], [11.38161678], [19.63087584], [16.15855845], [10.89356615]])
+
+    berr = np.linalg.norm(beta_parsimony - beta_spams)
+    #        print berr
+    assert berr < 5e-2
+
+    f_parsimony = function.f(beta_parsimony)
+    f_spams = function.f(beta_spams)
+    ferr = abs(f_parsimony - f_spams)
+    #        print ferr
+    assert ferr < 5e-6
+
+
+#
+# Example 2
+# Project: pylearn-parsimony
+# Source File: test_group_lasso.py
+
+    def test_nonoverlapping_smooth(self):
+        # Spams: http://spams-devel.gforge.inria.fr/doc-python/doc_spams.pdf
+
+        import numpy as np
+        from parsimony.functions import CombinedFunction
+        import parsimony.algorithms.proximal as proximal
+        import parsimony.functions as functions
+        import parsimony.functions.nesterov.gl as gl
+        import parsimony.datasets.simulate.l1_l2_glmu as l1_l2_glmu
+        import parsimony.utils.start_vectors as start_vectors
+
+        np.random.seed(42)
+
+        # Note that p must be even!
+        n, p = 25, 20
+        groups = [list(range(0, int(p / 2))), list(range(int(p / 2), p))]
+        #        weights = [1.5, 0.5]
+
+        A = gl.linear_operator_from_groups(p, groups=groups)  # , weights=weights)
+
+        l = 0.0
+        k = 0.0
+        g = 0.9
+
+        start_vector = start_vectors.RandomStartVector(normalise=True)
+        beta = start_vector.get_vector(p)
+
+        alpha = 1.0
+        Sigma = alpha * np.eye(p, p) + (1.0 - alpha) * np.random.randn(p, p)
+        mean = np.zeros(p)
+        M = np.random.multivariate_normal(mean, Sigma, n)
+        e = np.random.randn(n, 1)
+
+        snr = 100.0
+
+        mu_min = 5e-8
+        X, y, beta_star = l1_l2_glmu.load(l, k, g, beta, M, e, A, mu=mu_min, snr=snr)
+
+        eps = 1e-8
+        max_iter = 18000
+
+        beta_start = start_vector.get_vector(p)
+
+        mus = [5e-0, 5e-2, 5e-4, 5e-6, 5e-8]
+        fista = proximal.FISTA(eps=eps, max_iter=max_iter / len(mus))
+
+        beta_parsimony = beta_start
+        for mu in mus:
+            #            function = functions.LinearRegressionL1L2GL(X, y, l, k, g,
+            #                                                        A=A, mu=mu,
+            #                                                        penalty_start=0)
+
+            function = CombinedFunction()
+            function.add_function(functions.losses.LinearRegression(X, y, mean=False))
+            function.add_penalty(gl.GroupLassoOverlap(l=g, A=A, mu=mu, penalty_start=0))
+
+            beta_parsimony = fista.run(function, beta_parsimony)
+
+        try:
+            import spams
+
+            params = {"loss": "square", "regul": "group-lasso-l2", "groups": np.array([1] * (int(p / 2)) + [2] * (int(p / 2)), dtype=np.int32), "lambda1": g, "max_it": max_iter, "tol": eps, "ista": False, "numThreads": -1, }
+            beta_spams, optim_info = spams.fistaFlat(Y=np.asfortranarray(y), X=np.asfortranarray(X), W0=np.asfortranarray(beta_start), return_optim_info=True, **params)
+        #            print beta_spams
+
+        except ImportError:
+            beta_spams = np.asarray([[15.56784201], [39.51679274], [30.42583205], [24.8816362], [6.48671072], [6.48350546], [2.41477318], [36.00285723], [24.98522184], [29.43128643], [0.85520539], [40.31463542], [34.60084146], [8.82322513], [7.55741642], [7.62364398], [12.64594707], [21.81113869], [17.95400007], [12.10507338]])
+
+        berr = np.linalg.norm(beta_parsimony - beta_spams)
+        #        print berr
+        assert berr < 5e-3
+
+        f_parsimony = function.f(beta_parsimony)
+        f_spams = function.f(beta_spams)
+        ferr = abs(f_parsimony - f_spams)
+        #        print ferr
+        assert ferr < 5e-6
+
+######## end

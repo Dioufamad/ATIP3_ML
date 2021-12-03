@@ -1,0 +1,80 @@
+This is the log file following the course of the analysis:
+- Started working with seed 0
+- Finished working with seed 0
+- Started working with seed 1
+- Finished working with seed 1
+- Started working with seed 2
+- Finished working with seed 2
+- Started working with seed 3
+- Finished working with seed 3
+- Started working with seed 4
+- Finished working with seed 4
+- Started working with seed 5
+- Finished working with seed 5
+- Started working with seed 6
+- Finished working with seed 6
+- Started working with seed 7
+- Finished working with seed 7
+- Started working with seed 8
+- Finished working with seed 8
+- Started working with seed 9
+- Finished working with seed 9
+ >>>> Summary of model selection analysis : 
+- These choices have been made and influence the run : 
++ Dataset analysed is known as :  GSE25055
++ Number of random states explored and averaged :  10
++ Formatting of response values :  resp_val_type_as_int
++ Adding an intercept :  yes
++ Scorer used in the best model selection (gridsearchcv) :  f1
++ List of metrics computed for best models :  ['MM4', 'MCC', 'CK', 'F1', 'BalAcc', 'Acc', 'Prec', 'Rec', 'AUC'] and ROC curves.
+- The run is described by the following : 
++ Illness studied : BRCA
++ Drug studied : NACTaxanesBR
++ Profile of data used : GEX_MA
++ Type of Supervised Learning task used : Regr
++ Scheme/Alg used : SklearnL1LogReg
++ Estimator used : FromSklearnlinearModelLbrary
++ The type of model produced : Allfts_Singletask
++ trial :  Trial0064
+ >>>> Checking for integrity of the results collected...
++ All results are accounted for!
+ >>>> Report, for each seed, the results (best value for HPs explored, validation score, test score) for the best model found : 
++ Seed 0 best model had : best params as {'C': 0.1} (ie lambda from C of 10.0 ) , validation score of 0.4833333333333333 and test score as {'MM4': 0.42499999999999993, 'MCC': 0.3333333333333333, 'CK': 0.19999999999999996, 'F1': 0.5, 'BalAcc': 0.6666666666666666, 'Acc': 0.5, 'Prec': 0.3333333333333333, 'Rec': 1.0, 'AUC': 0.33333333333333337}.
++ Seed 1 best model had : best params as {'C': 0.0922197882333434} (ie lambda from C of 10.843659686896087 ) , validation score of 0.5833333333333333 and test score as {'MM4': 0.6443375672974063, 'MCC': 0.5773502691896258, 'CK': 0.5, 'F1': 0.6666666666666666, 'BalAcc': 0.8333333333333333, 'Acc': 0.75, 'Prec': 0.5, 'Rec': 1.0, 'AUC': 0.6666666666666667}.
++ Seed 2 best model had : best params as {'C': 0.1} (ie lambda from C of 10.0 ) , validation score of 0.4833333333333333 and test score as {'MM4': 0.42499999999999993, 'MCC': 0.3333333333333333, 'CK': 0.19999999999999996, 'F1': 0.5, 'BalAcc': 0.6666666666666666, 'Acc': 0.5, 'Prec': 0.3333333333333333, 'Rec': 1.0, 'AUC': 0.6666666666666667}.
++ Seed 3 best model had : best params as {'C': 0.1} (ie lambda from C of 10.0 ) , validation score of 0.5333333333333333 and test score as {'MM4': 0.6443375672974063, 'MCC': 0.5773502691896258, 'CK': 0.5, 'F1': 0.6666666666666666, 'BalAcc': 0.8333333333333333, 'Acc': 0.75, 'Prec': 0.5, 'Rec': 1.0, 'AUC': 1.0}.
++ Seed 4 best model had : best params as {'C': 0.1059560179277617} (ie lambda from C of 9.437878277775372 ) , validation score of 0.6 and test score as {'MM4': 0.42499999999999993, 'MCC': 0.3333333333333333, 'CK': 0.19999999999999996, 'F1': 0.5, 'BalAcc': 0.6666666666666666, 'Acc': 0.5, 'Prec': 0.3333333333333333, 'Rec': 1.0, 'AUC': 0.6666666666666667}.
++ Seed 5 best model had : best params as {'C': 0.1059560179277617} (ie lambda from C of 9.437878277775372 ) , validation score of 0.5833333333333333 and test score as {'MM4': 0.6443375672974063, 'MCC': 0.5773502691896258, 'CK': 0.5, 'F1': 0.6666666666666666, 'BalAcc': 0.8333333333333333, 'Acc': 0.75, 'Prec': 0.5, 'Rec': 1.0, 'AUC': 0.6666666666666667}.
++ Seed 6 best model had : best params as {'C': 0.11357333583431052} (ie lambda from C of 8.804883581643464 ) , validation score of 0.55 and test score as {'MM4': 1.0, 'MCC': 1.0, 'CK': 1.0, 'F1': 1.0, 'BalAcc': 1.0, 'Acc': 1.0, 'Prec': 1.0, 'Rec': 1.0, 'AUC': 1.0}.
++ Seed 7 best model had : best params as {'C': 0.11357333583431052} (ie lambda from C of 8.804883581643464 ) , validation score of 0.6833333333333333 and test score as {'MM4': 0.42499999999999993, 'MCC': 0.3333333333333333, 'CK': 0.19999999999999996, 'F1': 0.5, 'BalAcc': 0.6666666666666666, 'Acc': 0.5, 'Prec': 0.3333333333333333, 'Rec': 1.0, 'AUC': 1.0}.
++ Seed 8 best model had : best params as {'C': 0.1059560179277617} (ie lambda from C of 9.437878277775372 ) , validation score of 0.65 and test score as {'MM4': 0.42499999999999993, 'MCC': 0.3333333333333333, 'CK': 0.19999999999999996, 'F1': 0.5, 'BalAcc': 0.6666666666666666, 'Acc': 0.5, 'Prec': 0.3333333333333333, 'Rec': 1.0, 'AUC': 0.6666666666666667}.
++ Seed 9 best model had : best params as {'C': 0.1059560179277617} (ie lambda from C of 9.437878277775372 ) , validation score of 0.4333333333333333 and test score as {'MM4': 1.0, 'MCC': 1.0, 'CK': 1.0, 'F1': 1.0, 'BalAcc': 1.0, 'Acc': 1.0, 'Prec': 1.0, 'Rec': 1.0, 'AUC': 1.0}.
+ >>>> Report, the averages across the seeds, for the results (test score, best value for HPs explored) for the best model  : 
++ The average test score, across the seeds : Mean {'MM4': 0.6058012701892219, 'MCC': 0.5398717474235544, 'CK': 0.45, 'F1': 0.65, 'BalAcc': 0.7833333333333333, 'Acc': 0.675, 'Prec': 0.5166666666666666, 'Rec': 1.0, 'AUC': 0.7666666666666667}
++ The average test score, across the seeds : Median {'MM4': 0.5346687836487032, 'MCC': 0.4553418012614796, 'CK': 0.35, 'F1': 0.5833333333333333, 'BalAcc': 0.75, 'Acc': 0.625, 'Prec': 0.41666666666666663, 'Rec': 1.0, 'AUC': 0.6666666666666667} 
++ The average test score, across the seeds : Std {'MM4': 0.21878891934087355, 'MCC': 0.2531680309387294, 'CK': 0.304138126514911, 'F1': 0.18929694486000911, 'BalAcc': 0.1301708279317776, 'Acc': 0.19525624189766635, 'Prec': 0.2522124325070259, 'Rec': 0.0, 'AUC': 0.21343747458109494} 
++ The average best value for the HPs explored, across the seeds : Mean {'C': 0.10431905316130112} (ie lambda from C of 9.585976575667067 ) 
++ The average best value for the HPs explored, across the seeds : Median {'C': 0.1059560179277617} (ie lambda from C of 9.437878277775372 ) 
++ The average best value for the HPs explored, across the seeds : Std {'C': 0.006199653075759971} (ie lambda from C of 161.2993481699647 ) 
+ >>>> Report, for each seed, the counts of the coefs, for each best model : 
++ Seed 0 : Total features (fts) is 12152 , number NON null coefs fts is 91 (ie 0.748847926267281 % of total ) , number null coefs fts is 12061 (ie 99.25115207373271 % of total ) 
++ Seed 1 : Total features (fts) is 12152 , number NON null coefs fts is 52 (ie 0.4279131007241606 % of total ) , number null coefs fts is 12100 (ie 99.57208689927583 % of total ) 
++ Seed 2 : Total features (fts) is 12152 , number NON null coefs fts is 105 (ie 0.8640552995391706 % of total ) , number null coefs fts is 12047 (ie 99.13594470046083 % of total ) 
++ Seed 3 : Total features (fts) is 12152 , number NON null coefs fts is 67 (ie 0.5513495720868993 % of total ) , number null coefs fts is 12085 (ie 99.4486504279131 % of total ) 
++ Seed 4 : Total features (fts) is 12152 , number NON null coefs fts is 116 (ie 0.9545753785385123 % of total ) , number null coefs fts is 12036 (ie 99.04542462146149 % of total ) 
++ Seed 5 : Total features (fts) is 12152 , number NON null coefs fts is 121 (ie 0.9957208689927585 % of total ) , number null coefs fts is 12031 (ie 99.00427913100725 % of total ) 
++ Seed 6 : Total features (fts) is 12152 , number NON null coefs fts is 112 (ie 0.9216589861751152 % of total ) , number null coefs fts is 12040 (ie 99.07834101382488 % of total ) 
++ Seed 7 : Total features (fts) is 12152 , number NON null coefs fts is 118 (ie 0.9710335747202106 % of total ) , number null coefs fts is 12034 (ie 99.02896642527979 % of total ) 
++ Seed 8 : Total features (fts) is 12152 , number NON null coefs fts is 93 (ie 0.7653061224489796 % of total ) , number null coefs fts is 12059 (ie 99.23469387755102 % of total ) 
++ Seed 9 : Total features (fts) is 12152 , number NON null coefs fts is 89 (ie 0.7323897300855826 % of total ) , number null coefs fts is 12063 (ie 99.26761026991441 % of total ) 
+ >>>> Report, across the seeds, the averages and the consensus of the regression coefs : 
++ The averages of the counts of the coefs (Mean values part) : number NON null coefs fts is 96.4 (ie 0.793285055957867 % of total ) , number null coefs fts is 12055.6 (ie 99.20671494404213 % of total ) 
++ The averages of the counts of the coefs (Median values part) : number NON null coefs fts is 99.0 (ie 0.814680710994075 % of total ) , number null coefs fts is 12053.0 (ie 99.18531928900592 % of total ) 
++ The averages of the counts of the coefs (Std values part) : number NON null coefs fts is 21.68962885805103 (ie 0.17848608342701638 % of total ) , number null coefs fts is 21.689628858051027 (ie 0.1784860834270122 % of total ) 
++ The consensus on the counts of the coefs : Total features (fts) is 12152 , number NON null coefs fts is 261 (ie 2.1477946017116523 % of total ) , number null coefs fts is 11891 (ie 97.85220539828835 % of total ) 
+ >>>> Savings the tables containing views of the regression coefs
++ A table with the only NON null coefs sorted in descending order is saved in this path : 
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/Output_Regr_SklearnL1LogReg_Allfts_Singletask_BRCA_NACTaxanesBR_GEX_MA_Trial0064_NonNullCoefs.csv
++ A table with the raw coefs, sorted in the features order is saved in this path : 
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/Output_Regr_SklearnL1LogReg_Allfts_Singletask_BRCA_NACTaxanesBR_GEX_MA_Trial0064_RawListOfCoefs.csv
+[92m >>>> Analysis done. Time taken is :  0:29:49.840700 [0m

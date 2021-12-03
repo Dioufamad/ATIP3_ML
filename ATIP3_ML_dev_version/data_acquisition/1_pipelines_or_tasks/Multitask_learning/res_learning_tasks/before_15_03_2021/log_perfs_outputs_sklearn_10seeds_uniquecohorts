@@ -1,0 +1,25 @@
+Name of script used : C1_gridsearchcv_sklearn_corr1
+Goal : the API is sklearn, 10 seeds, gridsearchcv, cv = 10, reg = L1, datasets : 7 cohorts on by one
+NB : for cohort 6 (ie with 4 samples, cv=4)
+Values of the regulariation strength tested
+# A_space1_2plus1value_sorted # 0.0001 to 100 (200 lambda values, including default value 1)
+# A_space1_2plus1value_sorted_inverts # 10000 to 0.01 (200 C values including the default value)
+# use A_space1_2plus1value_sorted_inverts for all C values exploratory search
+# use A_space1_2plus1value_sorted for all lambda values exploratory search
+#=========================================================================
+# - the results remarked :
+#>>>>>>>>>>>>
+
+#>>>>>>>>>>>>
+
+#>>>>>>>>>>>>
+
+#>>>>>>>>>>>>
+
+#>>>>>>>>>>>>
+
+#>>>>>>>>>>>>
+
+#>>>>>>>>>>>>
+
+#>>>>>>>>>>>>

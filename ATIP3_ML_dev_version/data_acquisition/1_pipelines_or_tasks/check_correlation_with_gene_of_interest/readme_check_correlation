@@ -1,0 +1,6 @@
+1_checking_genes_presence.py :
+input : 3 cohorts, a list of genes of interest
+output : a table of where the genes of interest have been found in the columns name of the cohorts
+2_checking_genes_correlation.py :
+input : 3 cohorts, a list of genes of interest
+output : tables of correlations for each genes with a gene X center of our study

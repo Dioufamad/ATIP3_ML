@@ -1,0 +1,33 @@
+- HC_correction_on_R02_R04_MDA.py :
+input : a cohort, a number of clusters wanted, a table of previous work clusters where each sample belong
+output : the heatmap of the clusters chosen, a report on the intersection numbers with a previous work
+- HC_correction_trial1_on_R02.py : just the copy of base model script sent by Chloé to redo the clustering and that we started playing with first
+differences : the intersection computation at the end have been changed to be more informative
+- HC_heatmap.R :
+this was the first script used in R to make the first heatmaps that were rejected.
+Advantages : contains how torestrict the dataset to probes of MTUS1 and good if..else condittions codes
+- HierarchicalClustering_by_Chloe_for_HC_correction scripts (.py, .ipynb and .html) :
+these are the 3 versions of the base model script sent by Chloé to redo the clustering
+- Hm_dg1.R :
+this is the base model script that inspired HC_heatmap.R
+- JMP7.pptx :
+this is a capture of the documentation of the parameters of JMP7
+- MDA_corresponding_names_table_maker1.R :
+for MDA, make a file with only the correspondance between the two different nominations of samples (the old classes of samples in Sylvie's work is present also)
+- MDA_samples_corresponder.R :
+for MDA, make a file with only the correspondance between the two different nominations of samples (the old classes of samples in Sylvie's work is present also)
+then the correspondance between old classes and new classes is made
+- R02_corresponding_names_table_maker1.R :
+for R02, make a file with only the correspondance between the two different nominations of samples (the old classes of samples in Sylvie's work is present also)
+- R02_samples_corresponder.R :
+for R02, make a file with only the correspondance between the two different nominations of samples (the old classes of samples in Sylvie's work is present also)
+then the correspondance between old classes and new classes is made
+- R02_gene_probes_hm.py :
+restrict a cohort to the probes of MTUS1 and make heatmaps with those probes only
+-
+input :
+output :
+
+
+# NB : Jmp v7.0 Windows installer file location
+# Jmp installer is stored in data_warehouse/outputs folder

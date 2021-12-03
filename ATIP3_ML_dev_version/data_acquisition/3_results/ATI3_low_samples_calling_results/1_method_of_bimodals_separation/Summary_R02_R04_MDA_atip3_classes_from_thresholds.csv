@@ -1,0 +1,4 @@
+Cohort,Median Threshold,"count class ATIP3 low, median threshold used","count class ATIP3 high, median threshold used","count class ATIP3 low, threshold of the sample  used","count class ATIP3 high, threshold of the sample  used",Start of range thresholds by sample ,End of range thresholds by sample ,Start of range MTUS1 gene (ATIP3),End of range MTUS1 gene (ATIP3)
+Remagus02,3.211,0,226,0,226,3.092,3.445,4.553,12.575
+Remagus04,5.912,2,140,4,138,5.826,6.187,4.294,11.002
+MDAnderson,8.604,72,436,174,334,2.928,11.743,6.652,11.833

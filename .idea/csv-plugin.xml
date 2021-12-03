@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CsvFileAttributes">
+    <option name="attributeMap">
+      <map>
+        <entry key="/ATIP3_ML_dev_version/additionnal_content/slate_data/datasets_to_process_folder/cat_val_prof_test/BRCA_Treatment17_BestResCat_SNV.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/runs/2send1/Multi-task_10seeds_L1_RawListOfCoefs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/runs/roc_30seeds_mtof3/Output_Regr_SPAMSSparseGroupL1L2LogReg_CommonFtsMT3ofTop4FSsL1_BRCA_NACTaxanesBR_GEX_MA_Trial2MT3ofTop4FSsL130seeds_NonNullCoefs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/runs/spams_3cohortes_test_1seed/Output_Regr_SPAMSSparseGroupL1L2LogReg_CommonFtsMT3ofTop4FSsL1_BRCA_NACTaxanesBR_GEX_MA_Trial1MT3ofTop4FSsL1_NonNullCoefs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/runs/spams_3cohortes_test_1seed/Output_Regr_SPAMSSparseGroupL1L2LogReg_CommonFtsMT3ofTop4FSsL1_BRCA_NACTaxanesBR_GEX_MA_Trial1MT3ofTop4FSsL1_RawListOfCoefs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/runs/spams_sparse_group_lasso_l2__l1onlyused_6cohortes/Output_Regr_SPAMSSparseGroupL1LogReg_Allfts_Multitaskof6_BRCA_NACTaxanesBR_GEX_MA_Trial004_NonNullCoefs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_learning_tasks/outputs/runs/spams_sparse_group_lasso_l2_l1onlyused_3oftop4FSsL1/Output_Regr_SPAMSSparseGroupL1L2LogReg_CommonFtsMT3ofTop4FSsL1_BRCA_NACTaxanesBR_GEX_MA_Trial1MT3ofTop4FSsL1_MeanRank10SeedsFtsAndRanksOnlyVranksasentallftsselectedornot.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_warehouse/inputs/atip3_material/3c_data_trial1/annotations_ready4use/MDAnderson_PSI_GS_22215.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_warehouse/inputs/atip3_material/3c_data_trial1/annotations_ready4use/REMAGUS04_PSI_GS_22215.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_warehouse/inputs/atip3_material/annotations_ready4use/MDAnderson_PSI_GS_22215.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/data_warehouse/inputs/atip3_material/annotations_ready4use/REMAGUS04_PSI_GS_22215.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/outputs/log_creation_annot_files_21_03_2020_21h33/old_annot_produced/REMAGUS02_PSI_GS_54675.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/outputs/log_creation_annot_files_21_03_2020_21h33/old_annot_produced/REMAGUS04_PSI_GS_22215.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/outputs/log_creation_datasets/old_annot_produced/REMAGUS02_PSI_GS_54675.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/ATIP3_ML_dev_version/outputs/log_creation_datasets/old_annot_produced/REMAGUS04_PSI_GS_22215.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

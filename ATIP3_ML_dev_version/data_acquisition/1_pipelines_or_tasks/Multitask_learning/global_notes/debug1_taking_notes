@@ -1,0 +1,381 @@
+#>>>>>>>>>>>>>>>>>>>> the fitfailed error on spams :
+
+/home/amad/anaconda3/envs/atip3_1_from_old_slate_env5/lib/python3.7/site-packages/sklearn/model_selection/_validation.py:552: FitFailedWarning: Estimator fit failed. The score on this train-test partition for these parameters will be set to nan. Details:
+Traceback (most recent call last):
+  File "/home/amad/anaconda3/envs/atip3_1_from_old_slate_env5/lib/python3.7/site-packages/sklearn/model_selection/_validation.py", line 531, in _fit_and_score
+    estimator.fit(X_train, y_train, **fit_params)
+  File "<ipython-input-3-b859bba428fc>", line 27, in fit
+  File "/home/amad/anaconda3/envs/atip3_1_from_old_slate_env5/lib/python3.7/site-packages/spams.py", line 1120, in fistaFlat
+    optim_info = spams_wrap.fistaFlat(Y,X,W0,W,groups,numThreads ,max_it ,L0,fixed_step,gamma,lambda1,delta,lambda2,lambda3,a,b,c,tol,it0,max_iter_backtracking,compute_gram,lin_admm,admm,intercept,resetflow,regul,loss,verbose,pos,clever,log,ista,subgrad,logName,is_inner_weights,inner_weights,size_group,sqrt_step,transpose,linesearch_mode)
+  File "/home/amad/anaconda3/envs/atip3_1_from_old_slate_env5/lib/python3.7/site-packages/spams_wrap.py", line 308, in fistaFlat
+    return _spams_wrap.fistaFlat(*args)
+NotImplementedError: Wrong number or type of arguments for overloaded function 'fistaFlat'.
+  Possible C/C++ prototypes are:
+    _fistaFlat< double >(Matrix< double > *,AbstractMatrixB< double > *,Matrix< double > *,Matrix< double > *,Vector< int > *,int,int,double,bool,double,double,double,double,double,double,double,double,double,int,int,bool,bool,bool,bool,bool,char *,char *,bool,bool,bool,bool,bool,bool,char *,bool,Vector< double > *,int,bool,bool,int)
+    _fistaFlat< float >(Matrix< float > *,AbstractMatrixB< float > *,Matrix< float > *,Matrix< float > *,Vector< int > *,int,int,float,bool,float,float,float,float,float,float,float,float,float,int,int,bool,bool,bool,bool,bool,char *,char *,bool,bool,bool,bool,bool,bool,char *,bool,Vector< float > *,int,bool,bool,int)
+
+
+|-----> the the fit failed error usually has details that precise the source of the error (see : https://stackoverflow.com/questions/62079990/skorch-gridsearchcv-fitfailedwarning-estimator-fit-failed-the-score-on-this-t)
+here we our details come in the form of a traceback call:
+1: the fit_and_score line in code of estimator.fit
+2: the fistaflat line has a wrong number or types of args. lets compare the possible values for each option in the line
+
+=====> lets use this list to easily count the params and see if we can find the params that poses an issue
+optim_info = spams_wrap.fistaFlat(
+Y,
+X,
+W0,
+W,
+groups,
+numThreads ,
+max_it ,
+L0,
+fixed_step,
+gamma,
+lambda1,
+delta,
+lambda2,
+lambda3,
+a,
+b,
+c,
+tol,
+it0,
+max_iter_backtracking,
+compute_gram,
+lin_admm,
+admm,
+intercept,
+resetflow,
+regul,
+loss,
+verbose,
+pos,
+clever,
+log,
+ista,
+subgrad,
+logName,
+is_inner_weights,
+inner_weights,
+size_group,
+sqrt_step,
+transpose,
+linesearch_mode
+)
+=====>rest of the functions to use after is these 2 following lines
+my_model = CustomSPAMSestimatorLossIsSQUARERegulIsSPARSEGROUPLASSOL2V1(groups=groups_in_data, lambda1=0.001, lambda2=0.01)
+my_model.fit(X_train, y_train)
+
+###>>>>>>> Solution : the first 4 params (Y,X,W,W0) are matrix of double or floats. So lets check if they are like that
+X_ = X_train
+y_ = y_train
+lambda1=0.001
+lambda2=0.01
+groups = groups_in_data
+# X_sparse = sparse.csc_matrix(X_)  # np.asfortranarray(X_) #
+X_sparse = np.asfortranarray(X_)
+y_asfa = np.asfortranarray(y_.reshape((y_.shape[0], 1)))
+w_init = np.zeros((X_sparse.shape[1], 1), order="F")
+# w_init = np.asfortranarray(w_init0)
+w = spams.fistaFlat(y_asfa, X_sparse, W0=w_init, loss='square', regul='sparse-group-lasso-l2', groups=groups, lambda1=lambda1, lambda2=lambda2)
+======>not working
+### Or
+X_ = X_train
+X_.astype('float64')
+y_ = y_train
+y_.astype('float64')
+lambda1=0.001
+lambda2=0.01
+w_init0 = np.zeros((X_.shape[1], 1), order="F")
+beta_spams, optim_info = spams.fistaFlat(Y=np.asfortranarray(y_), X=np.asfortranarray(X_), W0=np.asfortranarray(w_init0), return_optim_info=True)
+# beta_spams, optim_info = spams.fistaFlat(Y=np.asfortranarray(y_,dtype='float64'), X=np.asfortranarray(X_,dtype='float64'), W0=np.asfortranarray(w_init0,dtype='float64'), return_optim_info=True)
+======>not working
+### Or
+X_ = X_train
+w_init0 = np.zeros((X_.shape[1], 1), order="F")
+w_init = sparse.csc_matrix(w_init0)
+X_1 = sparse.csc_matrix(X_)
+# X_.astype('float64')
+y_ = y_train
+X_ = X_train
+y_1 = sparse.csc_matrix(y_)
+# y_.astype('float64')
+lambda1=0.001
+lambda2=0.01
+# w_init0 = np.zeros((X_.shape[1], 1), order="F")
+beta_spams, optim_info = spams.fistaFlat(y_, X_, W0=w_init, return_optim_info=True)
+======>not working
+### Or
+X_ = X_train
+y_ = y_train
+lambda1=0.001
+lambda2=0.01
+groups = groups_in_data
+# X_sparse = sparse.csc_matrix(X_)  # np.asfortranarray(X_) #
+X_sparse = np.asfortranarray(X_)
+y_asfa = np.asfortranarray(y_.reshape((y_.shape[0], 1)))
+w_init = np.zeros((X_sparse.shape[1], 1), order="F")
+# w_init = np.asfortranarray(w_init0)
+# w = spams.fistaFlat(y_asfa, X_sparse, W0=w_init, loss='square', regul='sparse-group-lasso-l2', groups=groups, lambda1=lambda1, lambda2=lambda2)
+w = spams.fistaFlat(y_asfa, X_sparse, return_optim_info=False, W0=w_init)
+======>not tested or not working (forgot the note written)
+####>>>>> solution : trying the test script of page 58 of SPAMS doc shows us that X and Y has both to be produced using X = np.asfortranarray(X_previous,dtype='float'). NB: add the 2nd dimension for Y
+Now we have on the terminal this error :
+Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)
+###>>> idea : reduce the dataset to 200 cols and see if the basic script of test works :
+======> it works and gives :
+- Starting working with seed 0
+Various regression experiments
+FISTA + Regression l1
+Square loss
+L1 regularization
+FISTA algorithm
+Duality gap via Fenchel duality
+Timings reported do not include loss and fenchel evaluation
+Iter: 100, loss: 30.894, time: 0.016779, L: 4.91437e+06
+Relative duality gap: 0.994194
+Iter: 200, loss: 30.1306, time: 0.029028, L: 4.91437e+06
+Relative duality gap: 0.990263
+Iter: 300, loss: 29.5651, time: 0.041363, L: 4.91437e+06
+Relative duality gap: 0.976861
+Iter: 400, loss: 29.0851, time: 0.05386, L: 4.91437e+06
+Relative duality gap: 0.975387
+Iter: 500, loss: 28.6683, time: 0.066369, L: 4.91437e+06
+Relative duality gap: 0.970239
+Iter: 600, loss: 28.3117, time: 0.078894, L: 4.91437e+06
+Relative duality gap: 0.957918
+Iter: 700, loss: 28.024, time: 0.091505, L: 4.91437e+06
+Relative duality gap: 0.946029
+Iter: 800, loss: 27.8015, time: 0.103994, L: 4.91437e+06
+Relative duality gap: 0.938251
+Iter: 900, loss: 27.6331, time: 0.116537, L: 4.91437e+06
+Relative duality gap: 0.933216
+Iter: 1000, loss: 27.5112, time: 0.129114, L: 4.91437e+06
+Relative duality gap: 0.926471
+Iter: 1001, loss: 27.5102, time: 0.13025, L: 4.91437e+06
+Relative duality gap: 0.926471
+NB: the params used
+# param = {'numThreads' : -1,'verbose' : True, 'lambda1' : 0.05, 'it0' : 10, 'max_it' : 200, 'L0' : 0.1, 'tol' : 1e-3, 'intercept' : False, 'pos' : False} # originals params in the test
+# param = {'numThreads' : -1,'verbose' : True, 'lambda1' : 0.05} # test1 for the 200 cols used in the original test
+# the test1 for 200 cols params will default the max_iter to 1000 with 1 iter added to check if its stable
+# this makes the tests take long
+###>>>>>>>>idea : make the same test with half the cols but with originals params in the test (they with put back max_iter to 200 for faster tests)
+- Starting working with seed 0
+Various regression experiments
+FISTA + Regression l1
+Square loss
+L1 regularization
+FISTA algorithm
+Duality gap via Fenchel duality
+Timings reported do not include loss and fenchel evaluation
+Iter: 100, loss: 30.894, time: 0.016779, L: 4.91437e+06
+Relative duality gap: 0.994194
+Iter: 200, loss: 30.1306, time: 0.029028, L: 4.91437e+06
+Relative duality gap: 0.990263
+Iter: 300, loss: 29.5651, time: 0.041363, L: 4.91437e+06
+Relative duality gap: 0.976861
+Iter: 400, loss: 29.0851, time: 0.05386, L: 4.91437e+06
+Relative duality gap: 0.975387
+Iter: 500, loss: 28.6683, time: 0.066369, L: 4.91437e+06
+Relative duality gap: 0.970239
+Iter: 600, loss: 28.3117, time: 0.078894, L: 4.91437e+06
+Relative duality gap: 0.957918
+Iter: 700, loss: 28.024, time: 0.091505, L: 4.91437e+06
+Relative duality gap: 0.946029
+Iter: 800, loss: 27.8015, time: 0.103994, L: 4.91437e+06
+Relative duality gap: 0.938251
+Iter: 900, loss: 27.6331, time: 0.116537, L: 4.91437e+06
+Relative duality gap: 0.933216
+Iter: 1000, loss: 27.5112, time: 0.129114, L: 4.91437e+06
+Relative duality gap: 0.926471
+Iter: 1001, loss: 27.5102, time: 0.13025, L: 4.91437e+06
+Relative duality gap: 0.926471
+=========> working
+###>>> now let's try to catch the limit value of features columns from which it starts to be output the error "Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)"
+- we tested for 5 and 4 df worth of fts (60170 and 48136) and it gives this error :
+terminate called after throwing an instance of 'std::bad_array_new_length'
+  what():  std::bad_array_new_length
+Process finished with exit code 134 (interrupted by signal 6: SIGABRT)
+
+# this error is obtained but not with the value of fts 46000. Even if we wanted to analyse platform by platform, this is still below the largest num of fts group of platform (4dfs for 48136 fts)
+# continue to dig in and see what we can do...we really need to analyse the whole union of 6 dfs
+# an idea is to redo the code but in a python notebook as in Kaggle (and we can access it fast)
+
+###>>>> trial of does it works in a notebook (we use Kaggle notebbok to easily keep our notebook independtly and sharing to be tried)
+- we strip out our code from our data and we come back to the first test script given in the doc of SPAMS for our problem
+Using that, pandas is not used and cant be the cause of the problem
+Also, the data can be easily created without imported heavy outside data that could cloud our memory related tests
+
+- Test 1 : gives it work when we test a dataset with 72206 fts (size of our full dataset of multitask) (206 samples ie size of samples of training set after a 10XCV for the validation on the training set)
+Result : still has the error : Process finished with exit code 134 (interrupted by signal 6: SIGABRT)
+- Test 2 : check if the accepted in IDE PyCharm of 46000 fts is still working
+Result : its working
+- Test 3 : check how the memory used is expanding to see how much to allocate to IDE when using it to exploit the whole 72204 fts
+Kaggle used to offer 8Gb and 20min of max running per kernel : source (https://stackoverflow.com/questions/62311260/your-notebook-tried-to-allocate-more-memory-than-is-available-it-has-restarted)
+We can test until 16Gb of RAM usage now
+# error 139-11 obtained for m = 206 & n=72204
+# memory used when increasing num if fts :
+10K fts takes 1Gb in RAM,
+20K takes 3.3Gb,
+30K takes 7Gb,
+31K takes 7.5Gb, (not included)
+40k does 6,1-7,5Gb then ges to 12.2Gb,
+41k does 11.4Gb then ges to 13.1Gb then 7.3Gb, (not included)
+we should do these following
+50K => ???
+45K => ???
+but we decide to for the numbers that make entire datasets of features (4 datasets of features and if it does not works 3 datsets of features)
+48136 (fts of 4 common dfs) dont give a result (nothing happens and the RAM does not moved up. Also the before and after witness codes lines are not showing and the W vector is not defined
+36102 (fts of 3 common dfs) does 2Gb then 10Gb ie it works. means also that the limit of features not to exceed is between the numbers of features of 3 and 4 datasets
+- Test 4 : doing a proper locating test of the limit of the numbers of features
+a) On a 16 Gb of RAM system like our testing machine, when 206 samples are in a dataset (for the training and evaluation of the GridSearchCV), we can use at max 46625 features.
+b) - With the common features part of each dataset counting 12034 features, this limit allow use to group at max 3 datasets (36 102 features)
+- Or else, we can draw the top 46 625 most interesting features of a dataset, restrict the dataset to them only, and use the resulting dataset for SPAMS
+
+"""""" The method for searching a memory limit of dataset size  :
+NB : For the limit in amount of data fed to SPAMS main line of code, it all goes from a point where :
+- we set the number of samples to a value we want to use and that is the maximum number of samples we have.
+- we vary the number of features used by increasing it until we reach a limit causing a memory related error
+But in a more strict way, the limit should be expressed in terms of number of cells in order to include the effect of the numbers of samples and features both, expressing effectively how big is the dataset analysed. Trying to explore the possibility of a limit in terms of number of cells, we have :
+- Asma has found a limit of 4000 samples x 22000 features = 88 000 000 cells and that is “launchable” under 16gb of RAM
+- my “maximum launchable” just below 16Gb of RAM is ~ 200 samples x 46000 features = 9 200 000 cells
+=> this means that, more than the number of cells of my “maximum launchable” is launchable. So, the limit is on the number of features or on the number of samples or a weighted product of both (ie depends on both but features more impactiful than samples or vice versa or equally)
+- is the number of samples impactful ? : A test of the 4 000 samples x 46 000 features (my max launchable in features with the max number of samples of Asma) gives the memory error while less than this number of samples worked before. This means the number of samples is impactful
+- is the number of features impactful ? : Yes, by the results of our previous tests based on a fixated number of samples and increase number of features
+=> we risk being a bit spread out trying to find the function linking numbers of samples and features to the memory used. So, a swift but not generalized (has to be done for each computing unit newly used) strategy for searching the max limit (or max dataset size launchable) has to be proposed and as following :
+- we are in a learning task so the number of samples is a value to keep at its maximum possible
+- we set the chosen computation memory allocated (eg : 16Gb of RAM)
+- we use this following script [kaggle limit test notebook : https://www.kaggle.com/khamasiga/spams-error139-11-reproduction1]
+- we set the number of samples
+- we increase the number of features by 10 000 and test if result is obtained. repeat until a value of limit setting off the memory is obtained
+- search the precise limit by dichotomy and note the maximal working value as a “max launchable”
+- we note that “max launchable” as the max number of features launchable, within these conditions (samples, memory)
+""""""""""""""
+
+- Test 4 bis : trying on pycharm this following line on 100000 fts in order to see if the error was due to one of those strange bugs that can disappear
+X = sparse.csc_matrix(np.random.normal(size = (m,n)),dtype='float64')
+Result : Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)
+=> the bug remains
+=> also we remark thi following specifocity
+NB1 : using 'float' and 'float64' works both
+- same than test 4 but using 48000 fts and not 100000 fts
+'''
+terminate called after throwing an instance of 'std::bad_array_new_length'
+  what():  std::bad_array_new_length
+Process finished with exit code 134 (interrupted by signal 6: SIGABRT)
+'''
+- what does it gives us when using 72204 fts :
+start but gives the error "Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)"
+
+- Decision : using pycharm to test the memory error, we use the htop output and the monitor of lunix perfs
+- Test 6 : some values of fts number gives out a specic error that is not the 139-11 but the following
+'''
+terminate called after throwing an instance of 'std::bad_array_new_length'
+  what():  std::bad_array_new_length
+Process finished with exit code 134 (interrupted by signal 6: SIGABRT)
+'''
+lets try to understand why ny using the value 48000
+---------end of Test 4 bis
+
+- Test 6 : try to launching in our local test script the limit value of memory : 206 samples and 46 625 samples
+expected : that the limit is lowered to a bit less than 46 625 due to some RAM being almready used
+result obtained :
+- dont normalize the dataset, not by ourselves not by using SPAMS
+- for 206 samples, the max working fts number is 46340 fts (on our DELL Precision 5540 unit)
+=> we can work with SPAMS with the 46340 fts as max launch
+
+- Test 7 : redo all but finally with sparse matrix
+ result ; this error is obtained
+ /home/amad/anaconda3/envs/atip3_1_from_old_slate_env5/lib/python3.7/site-packages/sklearn/model_selection/_validation.py:552: FitFailedWarning: Estimator fit failed. The score on this train-test partition for these parameters will be set to nan. Details:
+Traceback (most recent call last):
+  File "/home/amad/anaconda3/envs/atip3_1_from_old_slate_env5/lib/python3.7/site-packages/sklearn/model_selection/_validation.py", line 531, in _fit_and_score
+    estimator.fit(X_train, y_train, **fit_params)
+  File "<ipython-input-3-cb95a359da5b>", line 27, in fit
+  File "/home/amad/anaconda3/envs/atip3_1_from_old_slate_env5/lib/python3.7/site-packages/spams.py", line 1120, in fistaFlat
+    optim_info = spams_wrap.fistaFlat(Y,X,W0,W,groups,numThreads ,max_it ,L0,fixed_step,gamma,lambda1,delta,lambda2,lambda3,a,b,c,tol,it0,max_iter_backtracking,compute_gram,lin_admm,admm,intercept,resetflow,regul,loss,verbose,pos,clever,log,ista,subgrad,logName,is_inner_weights,inner_weights,size_group,sqrt_step,transpose,linesearch_mode)
+  File "/home/amad/anaconda3/envs/atip3_1_from_old_slate_env5/lib/python3.7/site-packages/spams_wrap.py", line 308, in fistaFlat
+    return _spams_wrap.fistaFlat(*args)
+NotImplementedError: Wrong number or type of arguments for overloaded function 'fistaFlat'.
+  Possible C/C++ prototypes are:
+    _fistaFlat< double >(Matrix< double > *,AbstractMatrixB< double > *,Matrix< double > *,Matrix< double > *,Vector< int > *,int,int,double,bool,double,double,double,double,double,double,double,double,double,int,int,bool,bool,bool,bool,bool,char *,char *,bool,bool,bool,bool,bool,bool,char *,bool,Vector< double > *,int,bool,bool,int)
+    _fistaFlat< float >(Matrix< float > *,AbstractMatrixB< float > *,Matrix< float > *,Matrix< float > *,Vector< int > *,int,int,float,bool,float,float,float,float,float,float,float,float,float,int,int,bool,bool,bool,bool,bool,char *,char *,bool,bool,bool,bool,bool,bool,char *,bool,Vector< float > *,int,bool,bool,int)
+  FitFailedWarning)
+
+- Test 8 : launch SPAMS with the different feature selection proposed to not exceed the 16Gb of our testing unit (use only 46340 fts)
+result : after response as floats fix from Chloe, it works
+- see in fix test script how the fix is
+- from the Kaggle notebook, we can know the limit of until what number of fts the sparse matrix works
+- modif done to the Kaggle notebook :
+'''
+m = 206
+n = 72204
+# # >>>>> using X and y both formatted as fortran arrays
+# # error 139-11 memory related is obtained for m = 206 & n=72204/n=100000
+# # originals value for testing were 100 x 200
+# # max value is 206 x 46625 ie 9 200 000 cells...adding features set off the error 139-11 memory related)
+# # 4000 x 22000 ie 88 000 000 cells works and this means it is not a limit of number of cells but of number of features
+# X = np.asfortranarray(np.random.normal(size = (m,n)))
+# X = np.asfortranarray(X - np.tile(np.mean(X,0),(X.shape[0],1)),dtype='float')
+# X = spams.normalize(X)
+# Y = np.asfortranarray(np.random.normal(size = (m,1)))
+# Y = np.asfortranarray(Y - np.tile(np.mean(Y,0),(Y.shape[0],1)),dtype='float')
+# Y = spams.normalize(Y)
+# # >>>----end of part
+# >>>>> using X and y respectively formatted as a sparse matrix and a fortran array
+from scipy import sparse # to convert arrays
+x = np.random.normal(size = (m,n))
+X = sparse.csc_matrix(x)  # np.asfortranarray(self.X_) #
+y = np.random.normal(size = (m,1))
+Y = np.asfortranarray(y.reshape((y.shape[0], 1)))
+# result : working apparently but test again to get the limit
+# >>>----end of part
+W0 = np.zeros((X.shape[1],Y.shape[1]),dtype='float',order="F")
+print("data set")
+'''
+
+
+-------------review this part later (dont know why we did it anyway after all)
+### lets try something for the doc
+import spams import numpy as np
+param = {’numThreads’ : -1,’verbose’ : True, ’lambda1’ : 0.05, ’it0’ : 10, ’max_it’ : 200, ’L0’ : 0.1, ’tol’ : 1e-3, ’intercept’ : False, ’pos’ : False}
+np.random.seed(0) m = 100 n = 200 X = np.asfortranarray(np.random.normal(size = (m,n))) X = np.asfortranarray(X - np.tile(np.mean(X,0),(X.shape[0],1)),dtype=myfloat) X = spams.normalize(X) Y = np.asfortranarray(np.random.normal(size = (m,1))) Y = np.asfortranarray(Y - np.tile(np.mean(Y,0),(Y.shape[0],1)),dtype=myfloat) Y = spams.normalize(Y) W0 = np.zeros((X.shape[1],Y.shape[1]),dtype=myfloat,order="F") # Regression experiments # 100 regression problems with the same design matrix X. print(’\nVarious regression experiments’) param[’compute_gram’] = True print(’\nFISTA + Regression l1’) param[’loss’] = ’square’ param[’regul’] = ’l1’ # param.regul=’group-lasso-l2’ # param.size_group=10 (W, optim_info) = spams.fistaFlat(Y,X,W0,True,**param)
+
+>>>> isolate like this the fistaFlat function gives the prototypes error. Prototypes in C/C++ is explained here : https://stackoverflow.com/questions/3763960/purpose-of-c-c-prototypes
+
+#-------------------part of the different data entries methods in a spams custom estimator
+# Fitting
+        # because we have errors : here we will test multiples ways to format X and y data matrices and give it to SPAMS
+        # ------------- Way 1 : as in Chloe's example
+        X_sparse = sparse.csc_matrix(self.X_)  # np.asfortranarray(self.X_) #
+        y_asfa = np.asfortranarray(self.y_.reshape((self.y_.shape[0], 1)))
+        w_init = np.zeros((X_sparse.shape[1], 1), order="F")
+        w = spams.fistaFlat(y_asfa, X_sparse, W0=w_init, loss='logistic', regul='sparse-group-lasso-l2', groups=self.groups, lambda1=self.lambda1, lambda2=self.lambda2)
+        self.coef_ = w.reshape((w.shape[0],))
+        # ------------- Way 2 : using fortranarrays for both X and y (no reshape done before)
+        # X_asfa = np.asfortranarray(self.X_, dtype ='float')
+        # y_asfa = np.asfortranarray(self.y_, dtype ='float')
+        # w_init = np.zeros((X_asfa.shape[1], 1), order="F")
+        # w = spams.fistaFlat(y_asfa, X_asfa, W0=w_init, loss='square', regul='sparse-group-lasso-l2', groups=self.groups, lambda1=self.lambda1, lambda2=self.lambda2)
+        # self.coef_ = w.reshape((w.shape[0],))
+        # -------- Way 3 : using fortranarrays for both X and y (reshape done before)
+        # X_asfa = np.asfortranarray(self.X_.reshape(-1, 1),dtype ='float')
+        # y_asfa = np.asfortranarray(self.y_.reshape((self.y_.shape[0], 1)),dtype ='float')
+        # w_init = np.zeros((X_asfa.shape[1], 1), order="F")
+        # w = spams.fistaFlat(y_asfa, X_asfa, W0=w_init, loss='square', regul='sparse-group-lasso-l2', groups=self.groups, lambda1=self.lambda1, lambda2=self.lambda2)
+        # self.coef_ = w.reshape((w.shape[0],))
+        # ------------------------------
+
+
+#----------------------------------
+
+# help for max and min of dfs  : see (https://stackoverflow.com/questions/24571005/return-max-value-from-panda-dataframe-as-a-whole-not-based-on-column-or-rows)
+
+# comment Chloe
+http://spams-devel.gforge.inria.fr/doc-python/html/doc_spams006.html
+spams.fistaFlat
+
+# in a gdscv, cv=10 is enough to stratify because :
+- When the cv argument is an integer, cross_val_score uses the KFold or StratifiedKFold strategies by default, the latter being used if the estimator derives from ClassifierMixin.
+(source : https://scikit-learn.org/stable/modules/cross_validation.html)
+

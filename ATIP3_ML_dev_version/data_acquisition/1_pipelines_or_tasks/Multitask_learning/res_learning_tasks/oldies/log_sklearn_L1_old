@@ -1,0 +1,129 @@
+for sklearn logreg gscv L1
+==============================
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>dt1
+Summary of model selection analysis :
+- All results are accounted for!
+- Seed 0 best model in validation had best params as 0.6010276782070388 (ie lambda of 1.6638168860761273 ) with validation score as 0.37415416637572363 and test score as 0.46333333333333326.
+- Seed 1 best model in validation had best params as 0.12173827277396619 (ie lambda of 8.214343584919423 ) with validation score as 0.3135493576209136 and test score as 0.2.
+- Seed 2 best model in validation had best params as 0.09884959046625587 (ie lambda of 10.11637979766207 ) with validation score as 0.3847882154454544 and test score as 0.2.
+- Seed 3 best model in validation had best params as 0.5231099308056268 (ie lambda of 1.9116440753857 ) with validation score as 0.4330461470379225 and test score as 0.06666666666666667.
+- Seed 4 best model in validation had best params as 0.0698587974678525 (ie lambda of 14.314589375234785 ) with validation score as 0.36434900078468246 and test score as 0.13333333333333333.
+- Seed 5 best model in validation had best params as 0.17225859653987874 (ie lambda of 5.805225516094896 ) with validation score as 0.3989952966804763 and test score as 0.24205128205128207.
+- Seed 6 best model in validation had best params as 0.8504489341802686 (ie lambda of 1.1758495540521559 ) with validation score as 0.40480480984989653 and test score as 0.41610938576665824.
+- Seed 7 best model in validation had best params as 0.17225859653987874 (ie lambda of 5.805225516094896 ) with validation score as 0.41452926518925154 and test score as 0.21428571428571433.
+- Seed 8 best model in validation had best params as 0.08603464416684509 (ie lambda of 11.623224686798519 ) with validation score as 0.3666047417196414 and test score as 0.46333333333333326.
+- Seed 9 best model in validation had best params as 0.22739657523579274 (ie lambda of 4.397603609302721 ) with validation score as 0.3688337156503943 and test score as 0.1.
+- The average test score from the 10 seeds is median 0.20714285714285718 and mean 0.24991130487703211
+- The average value of the hp of interest from the 10 seeds is : 0.29229816163834044 (ie lambda of 3.4211641783683087 )
+- Out of 12151 , number of features with null coefs is 5807 and number of non null is 6344
+Info of Analysis for file saving :
+- Regularisation:  L1 , Cohort :  GSE41998 , Scorer :  MM4 , Num_trial :  trial1
+- File with non nul coefs saved into following path file :
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_singletask_sklearn/non_null_coefs_sklearn_L1_10seeds_GSE41998_MM4_trial1.csv
+ Analysis (trial1) done : Time taken is :  0:39:01.005757
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>dt2
+Summary of model selection analysis :
+- All results are accounted for!
+- Seed 0 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as 0.5424273441009183 and test score as 0.05.
+- Seed 1 best model in validation had best params as 0.1059560179277617 (ie lambda of 9.437878277775372 ) with validation score as 0.4838803387171258 and test score as 0.5154700538379251.
+- Seed 2 best model in validation had best params as 0.07488103857590031 (ie lambda of 13.354515629298973 ) with validation score as 0.4279743494847109 and test score as 0.5154700538379251.
+- Seed 3 best model in validation had best params as 0.12173827277396619 (ie lambda of 8.214343584919423 ) with validation score as 0.49954700538379254 and test score as 0.05.
+- Seed 4 best model in validation had best params as 0.24374441501222216 (ie lambda of 4.1026581058271905 ) with validation score as 0.54618802153517 and test score as 0.19999999999999996.
+- Seed 5 best model in validation had best params as 25.529080682395193 (ie lambda of 0.039171014908092563 ) with validation score as 0.549094010767585 and test score as 0.33999999999999997.
+- Seed 6 best model in validation had best params as 0.09884959046625587 (ie lambda of 10.11637979766207 ) with validation score as 0.33740169358562927 and test score as 0.5154700538379251.
+- Seed 7 best model in validation had best params as 0.36969127071950325 (ie lambda of 2.7049597304631314 ) with validation score as 0.4614273441009183 and test score as 0.5154700538379251.
+- Seed 8 best model in validation had best params as 0.8504489341802686 (ie lambda of 1.1758495540521559 ) with validation score as 0.4679486989694218 and test score as 0.1.
+- Seed 9 best model in validation had best params as 0.6010276782070388 (ie lambda of 1.6638168860761273 ) with validation score as 0.5095470053837925 and test score as 0.2488033871712585.
+- The average test score from the 10 seeds is median 0.29440169358562923 and mean 0.3050683602522959
+- The average value of the hp of interest from the 10 seeds is : 1002.7995417900256 (ie lambda of 0.0009972082737642377 )
+- Out of 19419 , number of features with null coefs is 0 and number of non null is 19419
+Info of Analysis for file saving :
+- Regularisation:  L1 , Cohort :  GSE26639 , Scorer :  MM4 , Num_trial :  trial1
+- File with non nul coefs saved into following path file :
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_singletask_sklearn/non_null_coefs_sklearn_L1_10seeds_GSE26639_MM4_trial1.csv
+ Analysis (trial1) done : Time taken is :  0:46:21.213297
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>dt3
+Summary of model selection analysis :
+- All results are accounted for!
+- Seed 0 best model in validation had best params as 0.1059560179277617 (ie lambda of 9.437878277775372 ) with validation score as 0.15666666666666665 and test score as 0.0.
+- Seed 1 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as nan and test score as 0.1.
+- Seed 2 best model in validation had best params as 0.13049019780144042 (ie lambda of 7.663410868007447 ) with validation score as 0.17 and test score as 0.1.
+- Seed 3 best model in validation had best params as 0.1499268432786047 (ie lambda of 6.669919663030115 ) with validation score as 0.16333333333333336 and test score as 0.4.
+- Seed 4 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as nan and test score as 0.1.
+- Seed 5 best model in validation had best params as 0.08603464416684509 (ie lambda of 11.623224686798519 ) with validation score as 0.27 and test score as 0.0.
+- Seed 6 best model in validation had best params as 0.08026433522257174 (ie lambda of 12.458833642950081 ) with validation score as 0.17 and test score as 0.0.
+- Seed 7 best model in validation had best params as 0.11357333583431052 (ie lambda of 8.804883581643464 ) with validation score as 0.13999999999999999 and test score as 0.2333333333333333.
+- Seed 8 best model in validation had best params as 0.1059560179277617 (ie lambda of 9.437878277775372 ) with validation score as 0.18 and test score as 0.2333333333333333.
+- Seed 9 best model in validation had best params as 0.18464249428955465 (ie lambda of 5.415871378079465 ) with validation score as 0.23333333333333334 and test score as 0.0.
+- The average test score from the 10 seeds is median 0.1 and mean 0.11666666666666667
+- The average value of the hp of interest from the 10 seeds is : 2000.0956843886447 (ie lambda of 0.0004999760800472218 )
+- Out of 19417 , number of features with null coefs is 0 and number of non null is 19417
+Info of Analysis for file saving :
+- Regularisation:  L1 , Cohort :  GSE32646 , Scorer :  MM4 , Num_trial :  trial1
+- File with non nul coefs saved into following path file :
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_singletask_sklearn/non_null_coefs_sklearn_L1_10seeds_GSE32646_MM4_trial1.csv
+ Analysis (trial1) done : Time taken is :  0:18:09.936396
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>dt4
+Summary of model selection analysis :
+- All results are accounted for!
+- Seed 0 best model in validation had best params as 0.1059560179277617 (ie lambda of 9.437878277775372 ) with validation score as 0.39 and test score as 0.8.
+- Seed 1 best model in validation had best params as 0.12173827277396619 (ie lambda of 8.214343584919423 ) with validation score as 0.5239999999999999 and test score as 0.1.
+- Seed 2 best model in validation had best params as 0.0922197882333434 (ie lambda of 10.843659686896087 ) with validation score as 0.49899999999999994 and test score as 0.18.
+- Seed 3 best model in validation had best params as 0.11357333583431052 (ie lambda of 8.804883581643464 ) with validation score as 0.3923333333333333 and test score as 0.1.
+- Seed 4 best model in validation had best params as 0.13049019780144042 (ie lambda of 7.663410868007447 ) with validation score as 0.43666666666666665 and test score as 0.15.
+- Seed 5 best model in validation had best params as 0.09884959046625587 (ie lambda of 10.11637979766207 ) with validation score as 0.314 and test score as 0.49880338717125844.
+- Seed 6 best model in validation had best params as 0.13987131026472385 (ie lambda of 7.149428986597577 ) with validation score as 0.4026666666666666 and test score as 0.2488033871712585.
+- Seed 7 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as nan and test score as 0.49880338717125844.
+- Seed 8 best model in validation had best params as 1.3826221737646565 (ie lambda of 0.7232633896483533 ) with validation score as 0.4923333333333334 and test score as 0.1.
+- Seed 9 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as nan and test score as 0.2.
+- The average test score from the 10 seeds is median 0.19 and mean 0.2876410161513776
+- The average value of the hp of interest from the 10 seeds is : 2000.2185320687065 (ie lambda of 0.0004999453729517044 )
+- Out of 12151 , number of features with null coefs is 0 and number of non null is 12151
+Info of Analysis for file saving :
+- Regularisation:  L1 , Cohort :  GSE25055 , Scorer :  MM4 , Num_trial :  trial1
+- File with non nul coefs saved into following path file :
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_singletask_sklearn/non_null_coefs_sklearn_L1_10seeds_GSE25055_MM4_trial1.csv
+ Analysis (trial1) done : Time taken is :  0:21:32.170337
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>dt5
+Summary of model selection analysis :
+- All results are accounted for!
+- Seed 0 best model in validation had best params as 0.18464249428955465 (ie lambda of 5.415871378079465 ) with validation score as 0.402644829381018 and test score as 0.13333333333333333.
+- Seed 1 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as 0.38490192501270365 and test score as 0.13333333333333333.
+- Seed 2 best model in validation had best params as 0.13049019780144042 (ie lambda of 7.663410868007447 ) with validation score as 0.458298211890089 and test score as 0.1961093857666582.
+- Seed 3 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as 0.34654221294161447 and test score as 0.5541101540257827.
+- Seed 4 best model in validation had best params as 0.28005038941836313 (ie lambda of 3.570785964900462 ) with validation score as 0.3849793346047446 and test score as 0.8.
+- Seed 5 best model in validation had best params as 0.09884959046625587 (ie lambda of 10.11637979766207 ) with validation score as 0.49558215028617986 and test score as 0.33889490385271825.
+- Seed 6 best model in validation had best params as 0.0698587974678525 (ie lambda of 14.314589375234785 ) with validation score as 0.4055483375920506 and test score as 0.19538841034622473.
+- Seed 7 best model in validation had best params as 0.06080224261649427 (ie lambda of 16.446761779946627 ) with validation score as 0.5199174389946848 and test score as 0.18.
+- Seed 8 best model in validation had best params as 0.07488103857590031 (ie lambda of 13.354515629298973 ) with validation score as 0.516043597486712 and test score as 0.1.
+- Seed 9 best model in validation had best params as 0.22739657523579274 (ie lambda of 4.397603609302721 ) with validation score as 0.39163111104514403 and test score as 0.38944271909999156.
+- The average test score from the 10 seeds is median 0.19574889805644147 and mean 0.3020612239758042
+- The average value of the hp of interest from the 10 seeds is : 2000.1126971325873 (ie lambda of 0.0004999718273043442 )
+- Out of 12151 , number of features with null coefs is 0 and number of non null is 12151
+Info of Analysis for file saving :
+- Regularisation:  L1 , Cohort :  GSE20194 , Scorer :  MM4 , Num_trial :  trial1
+- File with non nul coefs saved into following path file :
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_singletask_sklearn/non_null_coefs_sklearn_L1_10seeds_GSE20194_MM4_trial1.csv
+ Analysis (trial1) done : Time taken is :  0:34:15.879666
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>dt6
+Summary of model selection analysis :
+- All results are accounted for!
+- Seed 0 best model in validation had best params as 0.16070528182616386 (ie lambda of 6.22257083673023 ) with validation score as 0.6053333333333333 and test score as 0.46333333333333326.
+- Seed 1 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as 0.5406666666666666 and test score as 0.46333333333333326.
+- Seed 2 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as 0.47833333333333333 and test score as nan.
+- Seed 3 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as 0.6023333333333334 and test score as 0.46333333333333326.
+- Seed 4 best model in validation had best params as 0.344896226040576 (ie lambda of 2.899422853882875 ) with validation score as 0.5953333333333333 and test score as 0.29333333333333333.
+- Seed 5 best model in validation had best params as 0.644236350872137 (ie lambda of 1.552225357427048 ) with validation score as 0.6326666666666666 and test score as 0.35.
+- Seed 6 best model in validation had best params as 0.42475715525369023 (ie lambda of 2.3542864143224156 ) with validation score as 0.4413333333333333 and test score as 0.13333333333333333.
+- Seed 7 best model in validation had best params as 1.4820207057988586 (ie lambda of 0.6747544053110693 ) with validation score as 0.45899999999999996 and test score as 0.46333333333333326.
+- Seed 8 best model in validation had best params as 10000.0 (ie lambda of 0.0001 ) with validation score as 0.5743333333333333 and test score as 0.1.
+- Seed 9 best model in validation had best params as 0.9115888299750818 (ie lambda of 1.096985797892384 ) with validation score as 0.5873333333333333 and test score as 0.46333333333333326.
+- The average test score from the 10 seeds is median 0.46333333333333326 and mean 0.35481481481481475
+- The average value of the hp of interest from the 10 seeds is : 4000.396820454977 (ie lambda of 0.00024997520118173354 )
+- Out of 12151 , number of features with null coefs is 0 and number of non null is 12151
+Info of Analysis for file saving :
+- Regularisation:  L1 , Cohort :  GSE63471 , Scorer :  MM4 , Num_trial :  trial1
+- File with non nul coefs saved into following path file :
+/home/amad/PALADIN_1/3CEREBRO/garage/projects/ATIP3/ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/res_singletask_sklearn/non_null_coefs_sklearn_L1_10seeds_GSE63471_MM4_trial1.csv
+ Analysis (trial1) done : Time taken is :  0:16:03.135327
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
