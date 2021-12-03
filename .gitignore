@@ -28,5 +28,5 @@
 #- the whole data_warehouse content (folder is pushed but not its contents
 #- all the files with *.RData
 
-ATIP3_ML_dev_version/data_warehouse/*
+ATIP3_ML_dev_version/data_warehouse/**
 *.RData
