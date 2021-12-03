@@ -1,4 +1,4 @@
-###### ATIP3_ML project quick start guide !
+# ** ATIP3_ML project quick start guide !**
 
 This file is destined to readers that are familiar with the project are looking briefly for an information, related 
 to the data collected or used, the codes developped and the results obtained.
@@ -7,7 +7,7 @@ This file will be structured in the form of a FAQ.
 
 Below are various immediate questions about the repo and the related answer. 
 
-###### Where are the microarray datasets files ? : 
+# ** Where are the microarray datasets files ? : **
 
 We worked on 6 cohorts for which microrray data was fully available. We analysed them as standalone and as joined-in_one.
 
@@ -43,7 +43,7 @@ and a tag attached to each dataset path to call it easily and specifically from 
 
 "ATIP3_ML/ATIP3_ML_dev_version/engines/data_engine3_bay.py"
 
-###### Which RNAseq cohorts have been identified as adequate for our project ?
+# ** Which RNAseq cohorts have been identified as adequate for our project ?**
 At this present time, we have found : 
 - total number of samples across complete cohorts (clinical data available) : 252.
 This is for 2 cohorts (GSE123845 and GSE145151) with respectively (227,25) samples treated with taxanes.
@@ -54,7 +54,7 @@ NB : the following file explicits all about the research of these cohorts :
 
 "ATIP3_ML/ATIP3_ML_dev_version/data_warehouse/inputs/atip3_material/RNAseq_cohorts/Point_sur_cohortes_RNAseq_V2.pdf"
 
-###### Where are the files to launch a regression model ?
+# ** Where are the files to launch a regression model ?**
 This repo's codes operates around these main subfolders : 
 - ATIP3_ML/ATIP3_ML_dev_version/data_acquisition : where the codes developped are located
 - ATIP3_ML/ATIP3_ML_dev_version/data_warehouse : where all entry files and datasets are stored
@@ -74,7 +74,7 @@ The script used as template for such an analysis is :
 ATIP3_ML/ATIP3_ML_dev_version/data_acquisition/1_pipelines_or_tasks/Multitask_learning/SPAMS/GSCV_SpamsSparseGroupL1LogReg_Es0.py
 
 NB : More precisions about the code will be added in the Full_guide doc later on.
-###### Where are the latest results ?
+# ** Where are the latest results ?**
 
 The results are mainly in 2 categories : 
 - the performances of the tested predictive models : 
